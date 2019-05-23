@@ -1,257 +1,342 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="ja">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Content-Style-Type" content="text/css">
-<meta http-equiv="Content-Script-Type" content="text/javascript">
-<meta name="keywords" content="Aoki,Atsushi,Smalltalk,Smalltalker,Program,Programmer,Object,Oriented,Programming">
-<meta name="description" content="ソフトウェア工学IIのホームページ">
-<meta name="author" content="AOKI Atsushi">
-<link rev="made" href="index.html">
-<link rel="index" href="index.html">
-<style type="text/css">
-<!--
-body {
-  background-color : #ffffff;
-  margin : 20px;
-  padding : 10px;
-  font-family : serif;
-  font-size : 10pt;
-}
-a {
-  text-decoration : underline;
-  color : #000000;
-}
-a:link {
-  background-color : #ffddbb;
-}
-a:visited {
-  background-color : #ccffcc;
-}
-a:hover {
-  background-color : #dddddd;
-}
-a:active {
-  background-color : #dddddd;
-}
-div.belt {
-  background-color : #eeeeee;
-  padding : 0px 4px;
-}
-div.belt-yellow {
-  background-color : #ffffcc;
-  padding : 0px 4px;
-}
-div.belt-blue {
-  background-color : #ddeeff;
-  padding : 0px 4px;
-}
-div.right-small {
-  text-align : right;
-  font-size : 8pt;
-}
-img.border {
-  border-width : 1px;
-  border-color : #000000;
-  vertical-align : middle;
-}
-img.borderless {
-  border-width : 0px;
-  vertical-align : middle;
-}
-p.belt {
-  background-color : #ffeedd;
-  padding : 4px 8px;
-}
-p.belt-blue {
-  background-color : #ddeeff;
-  padding : 4px 8px;
-}
-pre.belt {
-  background-color : #ddeeff;
-  padding : 4px 8px;
-}
-pre.belt-yellow {
-  background-color : #ffffcc;
-  padding : 4px 8px;
-}
-table {
-  border-style : solid;
-  border-width : 0px;
-  border-color : #000000;
-  font-family : serif;
-  font-size : 10pt;
-}
-table.profile {
-  border-style : solid;
-  border-width : 0px;
-  border-color : #000000;
-  font-family : serif;
-  font-size : 10pt;
-  margin-top : 8px;
-  margin-left : 8px;
-  margin-right : 8px;
-  margin-bottom : 8px;
-}
-table.belt {
-  border-style : solid;
-  border-width : 0px;
-  border-color : #000000;
-  background-color : #ffeedd;
-  padding : 0px 0px;
-  width : 100%;
-}
-table.content {
-  border-style : solid;
-  border-width : 0px;
-  border-color : #000000;
-  padding : 2px 4px;
-}
-table.font-fixed {
-  border-style : solid;
-  border-width : 0px;
-  border-color : #000000;
-  padding : 2px 4px;
-  font-family : monospace;
-}
-table.nest {
-  border-style : solid;
-  border-width : 0px;
-  border-color : #000000;
-  padding : 0px 0px;
-}
-td {
-  padding : 0px 0px;
-  vertical-align : middle;
-}
-td.center {
-  text-align : center;
-}
-td.center-half {
-  text-align : center;
-  width : 50%;
-  font-size : 8pt;
-}
-td.center-small {
-  text-align : center;
-  font-size : 8pt;
-  padding : 0px 4px;
-}
-td.center-small-nopadding {
-  text-align : center;
-  font-size : 8pt;
-  padding : 0px 0px;
-}
-td.center-white {
-  text-align : center;
-  background-color : #ffffff;
-}
-td.center-small-white {
-  text-align : center;
-  font-size : 8pt;
-  background-color : #ffffff;
-}
-td.center-border1 {
-  text-align : center;
-  vertical-align : middle;
-  empty-cells : show;
-  border-style : solid;
-  border-width : 1px;
-  border-color : #ffc080;
-  width : 22px;
-  height : 22px;
-}
-td.left-small {
-  text-align : left;
-  font-size : 8pt;
-  padding : 0px 4px;
-}
-td.left-small-white {
-  text-align : left;
-  font-size : 8pt;
-  padding : 0px 4px;
-  background-color : #ffffff;
-}
-td.right-small {
-  text-align : right;
-  font-size : 8pt;
-  padding : 0px 4px;
-}
-td.right-small-white {
-  text-align : right;
-  font-size : 8pt;
-  padding : 0px 4px;
-  background-color : #ffffff;
-}
-th {
-  padding : 0px 0px;
-  vertical-align : middle;
-}
-#menu {
-  margin: 0px 0px 0px 0px;
-  padding: 0px;
-  height: 32px;
-}
-#menu ul {
-  margin: 0px;
-  padding: 0px;
-  list-style: none;
-  text-align: center;
-  clear: both;
-}
-#menu li {
-  margin: 0px 5px 0px 0px;
-  padding: 0px;
-  float: left;
-}
-#menu a {
-  display: block;
-  padding: 2px 4px;
-  text-decoration: none;
-  margin: 0px;
-  font-weight: bold;
-  background: #FFFFFF;
-  color: #333333;
-  border: 1px solid #666666;
-}
-#menu a:hover {
-  display: block;
-  padding: 2px 4px;
-  border-bottom: 1px solid #000000;
-  text-decoration: none;
-  background: #FFCC66;
-}
-#menu .current {
-  background-color: #F45F57;
-  font-weight: bold;
-  color: #FFFFFF;
-  border: 1px solid #333333;
-}
--->
-</style>
-<title>ソフトウェア工学II「樹状整列」開発計画書</title>
-</head>
-<body>
-<div id="menu">
-<ul>
-  <li><a href="../index.html">ホーム</a></li>
-  <li><a href="../Requirement/index.html">要求仕様書</a></li>
-  <li><a href="../DevelopmentPlan/index.html" class="current">開発計画書</a></li>
-  <li><a href="../BasicDesign/index.html">基本設計書</a></li>
-  <li><a href="../DetailDesign/index.html">詳細設計書</a></li>
-  <li><a href="../TestSpecification/index.html">テスト仕様書</a></li>
-  <li><a href="../TestResult/index.html">テスト結果</a></li>
-  <li><a href="../DevelopmentResult/index.html">開発実績</a></li>
-  <li><a href="../Program/index.html">プログラム</a></li>
-  <li><a href="../Manual/index.html">マニュアル</a></li>
-</ul>
-</div>
-<hr>
-<h2>ソフトウェア工学II「樹状整列」開発計画書</h2>
-<div class="belt">
-<h3><a name="KanseiSaseteKudasai">完成させてください</a></h3>
-</div>
-<hr>
-<div class="right-small">Copyright 20xx Project xx, Updated: 2017/03/13 (Created: 2009/11/11)</div>
-</body>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Style-Type" content="text/css">
+        <meta http-equiv="Content-Script-Type" content="text/javascript">
+        <meta name="keywords" content="Aoki,Atsushi,Smalltalk,Smalltalker,Program,Programmer,Object,Oriented,Programming">
+        <meta name="description" content="ソフトウェア工学IIのホームページ">
+        <meta name="author" content="AOKI Atsushi">
+        <link rev="made" href="index.html">
+        <link rel="index" href="index.html">
+        <style type="text/css">
+            <!--
+            body {
+                background-color : #ffffff;
+                margin : 20px;
+                padding : 10px;
+                font-family : serif;
+                font-size : 10pt;
+            }
+            a {
+                text-decoration : underline;
+                color : #000000;
+            }
+            a:link {
+                background-color : #ffddbb;
+            }
+            a:visited {
+                background-color : #ccffcc;
+            }
+            a:hover {
+                background-color : #dddddd;
+            }
+            a:active {
+                background-color : #dddddd;
+            }
+            div.belt {
+                background-color : #eeeeee;
+                padding : 0px 4px;
+            }
+            div.belt-yellow {
+                background-color : #ffffcc;
+                padding : 0px 4px;
+            }
+            div.belt-blue {
+                background-color : #ddeeff;
+                padding : 0px 4px;
+            }
+            div.right-small {
+                text-align : right;
+                font-size : 8pt;
+            }
+            img.border {
+                border-width : 1px;
+                border-color : #000000;
+                vertical-align : middle;
+            }
+            img.borderless {
+                border-width : 0px;
+                vertical-align : middle;
+            }
+            p.belt {
+                background-color : #ffeedd;
+                padding : 4px 8px;
+            }
+            p.belt-blue {
+                background-color : #ddeeff;
+                padding : 4px 8px;
+            }
+            p.text {
+                text-indent: 1em;
+            }
+            pre.belt {
+                background-color : #ddeeff;
+                padding : 4px 8px;
+            }
+            pre.belt-yellow {
+                background-color : #ffffcc;
+                padding : 4px 8px;
+            }
+            table {
+                border-style : solid;
+                border-width : 0px;
+                border-color : #000000;
+                font-family : serif;
+                font-size : 10pt;
+            }
+            table.profile {
+                border-style : solid;
+                border-width : 0px;
+                border-color : #000000;
+                font-family : serif;
+                font-size : 10pt;
+                margin-top : 8px;
+                margin-left : 8px;
+                margin-right : 8px;
+                margin-bottom : 8px;
+            }
+            table.belt {
+                border-style : solid;
+                border-width : 0px;
+                border-color : #000000;
+                background-color : #ffeedd;
+                padding : 0px 0px;
+                width : 100%;
+            }
+            table.content {
+                border-style : solid;
+                border-width : 0px;
+                border-color : #000000;
+                padding : 2px 4px;
+            }
+            table.font-fixed {
+                border-style : solid;
+                border-width : 0px;
+                border-color : #000000;
+                padding : 2px 4px;
+                font-family : monospace;
+            }
+            table.nest {
+                border-style : solid;
+                border-width : 0px;
+                border-color : #000000;
+                padding : 0px 0px;
+            }
+            td {
+                padding : 0px 0px;
+                vertical-align : middle;
+            }
+            td.center {
+                text-align : center;
+            }
+            td.center-half {
+                text-align : center;
+                width : 50%;
+                font-size : 8pt;
+            }
+            td.center-small {
+                text-align : center;
+                font-size : 8pt;
+                padding : 0px 4px;
+            }
+            td.center-small-nopadding {
+                text-align : center;
+                font-size : 8pt;
+                padding : 0px 0px;
+            }
+            td.center-white {
+                text-align : center;
+                background-color : #ffffff;
+            }
+            td.center-small-white {
+                text-align : center;
+                font-size : 8pt;
+                background-color : #ffffff;
+            }
+            td.center-border1 {
+                text-align : center;
+                vertical-align : middle;
+                empty-cells : show;
+                border-style : solid;
+                border-width : 1px;
+                border-color : #ffc080;
+                width : 22px;
+                height : 22px;
+            }
+            td.left-small {
+                text-align : left;
+                font-size : 8pt;
+                padding : 0px 4px;
+            }
+            td.left-small-white {
+                text-align : left;
+                font-size : 8pt;
+                padding : 0px 4px;
+                background-color : #ffffff;
+            }
+            td.right-small {
+                text-align : right;
+                font-size : 8pt;
+                padding : 0px 4px;
+            }
+            td.right-small-white {
+                text-align : right;
+                font-size : 8pt;
+                padding : 0px 4px;
+                background-color : #ffffff;
+            }
+            th {
+                padding : 0px 0px;
+                vertical-align : middle;
+            }
+            #menu {
+                margin: 0px 0px 0px 0px;
+                padding: 0px;
+                height: 32px;
+            }
+            #menu ul {
+                margin: 0px;
+                padding: 0px;
+                list-style: none;
+                text-align: center;
+                clear: both;
+            }
+            #menu li {
+                margin: 0px 5px 0px 0px;
+                padding: 0px;
+                float: left;
+            }
+            #menu a {
+                display: block;
+                padding: 2px 4px;
+                text-decoration: none;
+                margin: 0px;
+                font-weight: bold;
+                background: #FFFFFF;
+                color: #333333;
+                border: 1px solid #666666;
+            }
+            #menu a:hover {
+                display: block;
+                padding: 2px 4px;
+                border-bottom: 1px solid #000000;
+                text-decoration: none;
+                background: #FFCC66;
+            }
+            #menu .current {
+                background-color: #F45F57;
+                font-weight: bold;
+                color: #FFFFFF;
+                border: 1px solid #333333;
+            }
+            -->
+        </style>
+        <title>ソフトウェア工学II「樹状整列」開発計画書</title>
+    </head>
+    <body>
+        <div id="menu">
+            <ul>
+                <li><a href="../index.html">ホーム</a></li>
+                <li><a href="../Requirement/index.html">要求仕様書</a></li>
+                <li><a href="../DevelopmentPlan/index.html" class="current">開発計画書</a></li>
+                <li><a href="../BasicDesign/index.html">基本設計書</a></li>
+                <li><a href="../DetailDesign/index.html">詳細設計書</a></li>
+                <li><a href="../TestSpecification/index.html">テスト仕様書</a></li>
+                <li><a href="../TestResult/index.html">テスト結果</a></li>
+                <li><a href="../DevelopmentResult/index.html">開発実績</a></li>
+                <li><a href="../Program/index.html">プログラム</a></li>
+                <li><a href="../Manual/index.html">マニュアル</a></li>
+            </ul>
+        </div>
+        <hr>
+        <h2>ソフトウェア工学II「樹状整列」開発計画書</h2>
+        <div class="belt">
+            <h3><a name="Kaihatutaisei">開発体制</a></h3>
+        </div>
+        <p class="belt">開発に関わるメンバーの一覧とその担当</p>
+        <h4>メンバーの一覧と主な担当</h4>
+        <table class="content" summary="樹状整列プログラム開発を行うメンバーとその担当">
+            <tbody>
+                <tr>
+                    <td align="right">田野中　瞭：</td>
+                    <td align="left">プロジェクトマネージャー・プログラマ</td>
+                </tr>
+                <tr>
+                    <td align="right">藤山　和紀：</td>
+                    <td align="left">プログラマ・テスタ・仕様適合検査の責任者</td>
+                </tr>
+                <tr>
+                    <td align="right">畑中　駿助：</td>
+                    <td align="left">プログラマ・テスタ</td>
+                </tr>
+                <tr>
+                    <td align="right">小田原　史弥：</td>
+                    <td align="left">プログラマ・デザイナ</td>
+                </tr>
+            </tbody>
+        </table>
+        <br/>
+        <h4>コンポーネント（部品＝クラス）毎の担当者</h4>
+        <table class="content" summary="開発するコンポーネント（部品＝クラス）毎の担当者">
+            <tbody>
+                <tr>
+                    <td align="right">Branch：</td>
+                    <td align="left">担当者A</td>
+                </tr>
+                <tr>
+                    <td align="right">Constants：</td>
+                    <td align="left">担当者B</td>
+                </tr>
+                <tr>
+                    <td align="right">Forest：</td>
+                    <td align="left">担当者C</td>
+                </tr>
+                <tr>
+                    <td align="right">Node：</td>
+                    <td align="left">担当者D</td>
+                </tr>
+                <tr>
+                    <td align="right">SpiroController：</td>
+                    <td align="left">担当者E</td>
+                </tr>
+                <tr>
+                    <td align="right">SpiroModel：</td>
+                    <td align="left">担当者F</td>
+                </tr>
+                <tr>
+                    <td align="right">SpiroView：</td>
+                    <td align="left">担当者G</td>
+                </tr>
+            </tbody>
+        </table>
+        <br/>
+        <p class="text">以上のメンバーで開発を行う。基本的に上に示した担当者が責任を持ってそれぞれの開発を行う。しかし、開発途中に何か問題が生じた場合はその限りではない。開発に用いるプログラミング言語はJavaである。また、バージョン管理システムとしてGithubを用いて開発を行い、開発におけるチャットツールとしてSlack、Lineを利用する。仕様通りのプログラムを完成させるために、仕様適合検査の責任者が次項の開発スケジュールに示されたマイルストーンごとに、設計段階から仕様のチェックをクライアント（開発依頼者＝青木淳）と共に行う。開発にあたって不明な点が生じた場合はクライアントと協議して開発を進める。</p>
+        <br/>
+        <p class="belt">ライフサイクルモデル</p>
+        <table summary="table">
+            <tr>
+                <td>
+                    <table class="content" summary="table">
+                        <tbody>
+                            <tr>
+                                <td class="center-small"><a href="images/Vmodel.png"><img class="borderless" src="images/Vmodel.png" width="550" height="340" alt="Vmodel"></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <br/>
+        <p class="text">開発は上のようなVモデルのライフサイクルで行う。</p>
+        <div class="belt">
+            <h3><a name="KaihatuSchedule">開発スケジュール</a></h3>
+        </div>
+        <img src="DOS.png" alt="" width ="720" height="390">
+            <p>
+            以上が開発スケジュールだ。1ヶ月を4等分にした表にしてあ(１ヶ月は大体4週間~5週間の間なので、4つに分けてある)。
+            </p>
+            <hr>
+            <div class="right-small">Copyright 2019 Project TreeAlignment, Updated: 2019/05/12 (Created: 2019/05/12)</div>
+            </body>
 </html>
