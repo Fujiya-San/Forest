@@ -2,7 +2,7 @@
 # Last Edit 12/05/2019
 
 # Collaboration
-# (°▽°) Ryo Tanonaka  <-%%%%->  _:(´ཀ`」 ∠): 
+# (°▽°) Ryo Tanonaka  <-%%%%->  _:(´ཀ`」 ∠): ƪ(˘⌣˘)ʃ 
 ``` bash
 # Satoshi Tahara
 # Fumiya Odahara
