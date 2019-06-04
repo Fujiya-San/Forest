@@ -1,5 +1,5 @@
 # Forest
-# Last Edit 12/05/2019
+# Last Edit 04/06/2019
 
 # Collaboration
 # (°▽°) Ryo Tanonaka  <-%%%%->  _:(´ཀ`」 ∠): ƪ(˘⌣˘)ʃ 
@@ -136,7 +136,7 @@ alias os='sw_vers'
 コマンドライン上では以下のように表示される。
 fujiyamakazuki@Comand Line Number : 150:~$ os
 ProductName:	Mac OS X
-ProductVersion:	10.14.4
+ProductVersion:	10.14.5
 BuildVersion:	18E226
 
 
