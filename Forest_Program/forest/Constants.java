@@ -1,5 +1,9 @@
 package forest;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Point;
+
 public class Constants extends Object {
 
 	public static String TagOfTrees = "trees:";
@@ -12,7 +16,7 @@ public class Constants extends Object {
 
 	public static Color BackgroundColor = Color.white;
 
-	public static Font DefaultFont = new Font("Serif", Font.PlAIN, 12);
+	public static Font DefaultFont = new Font("Serif", Font.PLAIN, 12);
 
 	public static Point Margin = new Point(2,1);
 
