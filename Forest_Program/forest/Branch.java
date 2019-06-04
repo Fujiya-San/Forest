@@ -1,5 +1,7 @@
 package forest;
 
+import java.awt.Graphics;
+
 public class Branch extends Object {
 
 	private Node start;

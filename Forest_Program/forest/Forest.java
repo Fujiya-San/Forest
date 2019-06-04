@@ -1,5 +1,11 @@
 package forest;
 
+import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.util.ArrayList;
+import mvc.Model;
+
 public class Forest extends Object {
 
 	private ArrayList<Node> nodes;
@@ -24,11 +30,11 @@ public class Forest extends Object {
 
 	}
 
-	public void arrange(SpiroModel aModel) {
+	public void arrange(TreeModel aModel) {
 
 	}
 
-	protected Point arrange(Node aNode, Point aPoint, SpiroModel aModel) {
+	protected Point arrange(Node aNode, Point aPoint,  TreeModel aModel) {
 		return null;
 	}
 
@@ -44,7 +50,7 @@ public class Forest extends Object {
 
 	}
 
-	protected void propagate(SpiroModel aModel) {
+	protected void propagate(TreeModel aModel) {
 
 	}
 
