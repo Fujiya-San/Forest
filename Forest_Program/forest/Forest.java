@@ -30,11 +30,11 @@ public class Forest extends Object {
 
 	}
 
-	public void arrange(TreeModule aModel) {
+	public void arrange(TreeModel aModel) {
 
 	}
 
-	protected Point arrange(Node aNode, Point aPoint,  TreeModule aModel) {
+	protected Point arrange(Node aNode, Point aPoint,  TreeModel aModel) {
 		return null;
 	}
 
@@ -50,7 +50,7 @@ public class Forest extends Object {
 
 	}
 
-	protected void propagate(TreeModule aModel) {
+	protected void propagate(TreeModel aModel) {
 
 	}
 
