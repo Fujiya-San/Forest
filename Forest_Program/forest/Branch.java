@@ -9,19 +9,24 @@ public class Branch extends Object {
 	private Node end;
 
 	public void Branch(Node from, Node to) {
-
+		start = from;
+		end = to;
 	}
 
 	public void draw(Graphics aGraphics) {
-
+		Integer startX = this.start.getLocation().x + this.start.getExtent().x;
+		Integer startY = this.start.getLocation().y + (this.start.getExtent().y / 2);
+		Integer endX = this.start.getLocation().x;
+		Integer endY = this.end.getLocation().y + (this.end.getExtent().y / 2);
+		aGraphics.drawLine(startX, startY, endx, endY);
 	}
 
 	public Node start() {
-		return null;
+		return start;
 	}
 
 	public Node end() {
-		return null;
+		return end;
 	}
 
 	public String toString() {
