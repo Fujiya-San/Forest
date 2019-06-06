@@ -6,9 +6,9 @@ import mvc.Controller;
 public class TreeController extends Controller
 {
 
-	public void TreeController()
+	public TreeController()
 	{
-
+		super();
 	}
 
 	public void mouseClicked(MouseEvent aMouseEvent)

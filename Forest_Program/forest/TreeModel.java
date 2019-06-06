@@ -4,13 +4,13 @@ import java.io.File;
 import java.util.ArrayList;
 import mvc.Model;
 
-public class TreeModule extends Model {
+public class TreeModel extends Model {
 
 	private Forest forest;
 
-	public void TreeModule(File aFile)
+	public TreeModel(File aFile)
 	{
-
+		super();
 	}
 
 	public void animate()
