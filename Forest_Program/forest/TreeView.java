@@ -7,9 +7,10 @@ import mvc.View;
 public class TreeView extends View
 {
 
+
 	public void TreeView(TreeModule aModule)
 	{
-
+		
 	}
 
 	public void paintComponent(Graphics aGraphics)
