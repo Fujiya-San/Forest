@@ -20,6 +20,7 @@ public class TreeView extends View
 
 	public Node whichOfNodes(Point aPoint)
 	{
+		new Forest().whichOfNodes(aPoint);
 		return null;
 	}
 
