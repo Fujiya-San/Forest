@@ -11,7 +11,11 @@ public class TreeController extends Controller
 	{
 		super();
 	}
-
+	
+	/**
+	 * マウスクリック判定を行うメソッド
+	 * @param aMouseEvent マウスのクリック情報
+	 */
 	public void mouseClicked(MouseEvent aMouseEvent)
 	{
 		Point aPoint = aMouseEvent.getPoint();
