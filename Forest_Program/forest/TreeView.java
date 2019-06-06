@@ -8,9 +8,9 @@ public class TreeView extends View
 {
 
 
-	public void TreeView(TreeModule aModule)
+	public TreeView(TreeModule aModule)
 	{
-		
+		super(aModule);
 	}
 
 	public void paintComponent(Graphics aGraphics)
