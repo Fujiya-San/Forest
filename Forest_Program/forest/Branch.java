@@ -9,8 +9,8 @@ public class Branch extends Object {
 	private Node end;
 
 	public void Branch(Node from, Node to) {
-		start = from;
-		end = to;
+		this.start = from;
+		this.end = to;
 	}
 
 	public void draw(Graphics aGraphics) {
@@ -18,15 +18,15 @@ public class Branch extends Object {
 		Integer startY = this.start.getLocation().y + (this.start.getExtent().y / 2);
 		Integer endX = this.start.getLocation().x;
 		Integer endY = this.end.getLocation().y + (this.end.getExtent().y / 2);
-		aGraphics.drawLine(startX, startY, endx, endY);
+		aGraphics.drawLine(startX, startY, endX, endY);
 	}
 
 	public Node start() {
-		return start;
+		return this.start;
 	}
 
 	public Node end() {
-		return end;
+		return this.end;
 	}
 
 	public String toString() {
