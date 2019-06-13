@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.Point;
 import mvc.View;
 
+@SuppressWarnings("serial")
 public class TreeView extends View
 {
 
@@ -18,7 +19,7 @@ public class TreeView extends View
 
 	}
 
-	public Node whichOfNodes(Point aPoint)
+	public static Node whichOfNodes(Point aPoint)
 	{
 		new Forest().whichOfNodes(aPoint);
 		return null;
