@@ -17,6 +17,8 @@ public class Forest extends Object {
 
 	private List<Node> nodes = new ArrayList<>();
 
+	private List<Node> rootNodesList = new ArrayList<>();
+
 	private List<Branch> branches = new ArrayList<>();
 
 	private Rectangle bounds;
@@ -71,20 +73,15 @@ public class Forest extends Object {
 
 	public ArrayList<Node> rootNodes() 
 	{
-		ArrayList<Node> rootNodesList = new ArrayList<>();
+		// ArrayList<Node> rootNodesList = new ArrayList<>();
 		Integer anIndex = 0;
 		for(Node aNode : nodes)
 		{
 			anIndex = 0 ;
 			for(Branch aBranch : branches)
 			{
-				if(Objects.equals(aNode, aBranch.end()))
-				{
-					break;
-				}else if(anIndex == branches.size()-1)
-				{
-					rootNodesList.add(aNode);
-				}
+				if(Objects.equals(aNode, aBranch.end())) break;
+				else if(anIndex == branches.size()-1) rootNodesList.add(aNode);
 				anIndex++;
 			}
 			
@@ -103,10 +100,6 @@ public class Forest extends Object {
 		Collection<Branch> aCollection = new Vector<Branch>();
 		ArrayList<Node> subNodesList = new ArrayList<>();
 		Branch[] branchesToSubNodes = (Branch[])(branches.stream().filter( aBranch -> Objects.equals(aBranch.start(), aNode) ).toArray());
-		// for(Branch aBranch : branchesToSubNodes)
-		// {
-		// 	subNodesList.add(aBranch.end());
-		// }
 		Consumer<Branch> aConsumer = (Branch aBranch) -> { subNodesList.add(aBranch.end()); };
 		aCollection.forEach(aConsumer);
 		// for(Branch aBranch : branches)
@@ -116,6 +109,7 @@ public class Forest extends Object {
 		// 		subNodesList.add(aBranch.end());
 		// 	}
 		// }
+		System.out.println("System OK");
 		return subNodesList;
 	}
 
