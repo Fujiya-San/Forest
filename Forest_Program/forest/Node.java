@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 
+@SuppressWarnings("serial")
 public class Node extends Component
 {
 
@@ -24,7 +25,7 @@ public class Node extends Component
 
 	}
 
-	public static void draw(Graphics aGraphics)
+	public void draw(Graphics aGraphics)
 	{
 
 	}
