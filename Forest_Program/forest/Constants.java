@@ -24,7 +24,7 @@ public class Constants extends Object {
 
 	public static Integer UnKnown = -1;
 
-	public static Integer UnVisited = 1;
+	public static Integer UnVisited = 0;
 
 	public static Integer Visited = 1;
 
