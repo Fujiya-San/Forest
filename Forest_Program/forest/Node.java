@@ -24,7 +24,7 @@ public class Node extends Component
 
 	}
 
-	public void draw(Graphics aGraphics)
+	public static void draw(Graphics aGraphics)
 	{
 
 	}

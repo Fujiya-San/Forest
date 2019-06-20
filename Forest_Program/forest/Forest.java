@@ -1,17 +1,23 @@
 package forest;
 
 import java.util.Objects;
+import java.util.Vector;
+import java.util.function.Consumer;
+import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import mvc.Model;
 
 public class Forest extends Object {
 
-	private ArrayList<Node> nodes;
+	private List<Node> nodes = new ArrayList<>();
 
-	private ArrayList<Branch> branches;
+	private List<Branch> branches = new ArrayList<>();
 
 	private Rectangle bounds;
 
@@ -39,16 +45,6 @@ public class Forest extends Object {
 
 	protected Point arrange(Node aNode, Point aPoint,  TreeModel aModel) 
 	{
-		if(Objects.equals(aNode.getStatus(), Constants.Unvisited))
-		{
-			aNode.setLocation(aPoint.getX(), aPoint.getY());
-		}
-
-		this.propagate(aModel);
-
-		this.subNodes(aNode).forEach(node -> this.arrange(node, new Point(aPoint.getX()+Constants.Interval.getX(), aPoint.getY()+Constants.Interval.getY()), aModel));
-
-
 		return null;
 	}
 
@@ -102,14 +98,17 @@ public class Forest extends Object {
 		return nodeCollection;
 	}
 
-	public ArrayList<Node> subNodes(Node aNode) 
+	public ArrayList<Node> subNodes(Node aNode)
 	{
+		Collection<Branch> aCollection = new Vector<Branch>();
 		ArrayList<Node> subNodesList = new ArrayList<>();
 		Branch[] branchesToSubNodes = (Branch[])(branches.stream().filter( aBranch -> Objects.equals(aBranch.start(), aNode) ).toArray());
-		for(Branch aBranch : branchesToSubNodes)
-		{
-			subNodesList.add(aBranch.end());
-		}
+		// for(Branch aBranch : branchesToSubNodes)
+		// {
+		// 	subNodesList.add(aBranch.end());
+		// }
+		Consumer<Branch> aConsumer = (Branch aBranch) -> { subNodesList.add(aBranch.end()); };
+		aCollection.forEach(aConsumer);
 		// for(Branch aBranch : branches)
 		// {
 		// 	if(Objects.equals(aBranch.start(), aNode))
