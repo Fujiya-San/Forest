@@ -29,8 +29,8 @@ public class Node extends Component
 
 	public void draw(Graphics aGraphics)
 	{
-		aGraphics.drawRect((int)bounds.getX(), (int)bounds.getY(), (int)bounds.getWidth(), (int)bounds.getHeight());
-		aGraphics.drawString(this.name, (int)this.location.getX(), (int)this.location.getY());
+		aGraphics.drawRect(bounds.x, bounds.y, bounds.width, bounds.height);
+		aGraphics.drawString(this.name, this.location.x, this.location.y);
 	}
 
 	public Rectangle getBounds()
@@ -80,15 +80,15 @@ public class Node extends Component
 
 	public void setBounds()
 	{
-		Double x = new Double(this.location.getX()-Constants.Margin.getX());
-		Double y = new Double(this.location.getY()-Constants.Margin.getY());
-		Double width = new Double(this.extent.getX()+Constants.Margin.getX());
-		Double height = new Double(this.extent.getY()+Constants.Margin.getY());
-		// this.bounds = new Rectangle(this.location.getX()-Constants.Margin.getX(), 
-		// 							this.location.getY()-Constants.Margin.getY(), 
-		// 							this.extent.getX()+Constants.Margin.getX(), 
-		// 							this.extent.getY()+Constants.Margin.getY());
-		this.bounds = new Rectangle(x.intValue(), y.intValue(), width.intValue(), height.intValue());
+		// Double x = new Double(this.location.getX()-Constants.Margin.getX());
+		// Double y = new Double(this.location.getY()-Constants.Margin.getY());
+		// Double width = new Double(this.extent.getX()+Constants.Margin.getX());
+		// Double height = new Double(this.extent.getY()+Constants.Margin.getY());
+		this.bounds = new Rectangle(this.location.x-Constants.Margin.x, 
+									this.location.y-Constants.Margin.y, 
+									this.extent.x+Constants.Margin.x, 
+									this.extent.y+Constants.Margin.y);
+		// this.bounds = new Rectangle(x.intValue(), y.intValue(), width.intValue(), height.intValue());
 	}
 
 	protected int stringHeight(String string)
