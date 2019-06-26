@@ -3,6 +3,7 @@ package forest;
 import java.util.Objects;
 import java.util.Vector;
 import java.util.function.Consumer;
+import java.util.function.Predicate;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Point;
@@ -38,15 +39,40 @@ public class Forest extends Object {
 	}
 
 	public void arrange() {
-
+		Consumer<Node> aConsumer = (Node aNode) -> { this.arrange(aNode, new Point(bounds.x, bounds.y+bounds.height), null); };
+		rootNodesList.forEach( aConsumer );
 	}
 
 	public void arrange(TreeModel aModel) {
-
+		Consumer<Node> aConsumer = (Node aNode) -> { this.arrange(aNode, new Point(bounds.x, bounds.y+bounds.height), aModel); };
+		rootNodesList.forEach( aConsumer );
 	}
 
 	protected Point arrange(Node aNode, Point aPoint,  TreeModel aModel) 
 	{
+		List<Node> subNodes = this.subNodes(aNode);
+		subNodes = this.sortNodes(subNodes);
+
+		if(!Objects.equals(aNode.getStatus(), Constants.Visited)) aNode.setLocation(aPoint);
+
+		if(aModel != null) this.propagate(aModel);
+		
+		if(bounds.x < aPoint.x) bounds.setSize(aPoint.x, bounds.height);
+		if(bounds.y < aPoint.y) bounds.setSize(bounds.width, aPoint.y);
+
+		Integer anIndex = 0;
+		for(Node aSubNode : subNodes)
+		{
+			this.arrange(aSubNode, new Point(aPoint.x+aNode.getBounds().width+Constants.Interval.x, aPoint.y+(aNode.getBounds().height*anIndex)+(Constants.Interval.y*anIndex)), aModel);
+			anIndex++;
+		}
+		
+		aNode.setLocation(new Point(aPoint.x, aPoint.y+((bounds.height-aPoint.y)/2)));
+
+		if(aModel != null) this.propagate(aModel);
+
+		aNode.setStatus(Constants.Visited);
+
 		return null;
 	}
 
@@ -69,6 +95,14 @@ public class Forest extends Object {
 	protected void propagate(TreeModel aModel) 
 	{
 		aModel.changed();
+		try
+		{
+			Thread.sleep(Constants.SleepTick);
+		}catch(InterruptedException e)
+		{
+			System.out.println(e);
+		}
+		
 	}
 
 	public ArrayList<Node> rootNodes() 
@@ -86,19 +120,20 @@ public class Forest extends Object {
 			}
 			
 		}
+		rootNodesList = this.sortNodes(rootNodesList);
 		return null;
 	}
 
-	protected ArrayList<Node> sortNodes(ArrayList<Node> nodeCollection) 
+	protected List<Node> sortNodes(List<Node> nodeCollection) 
 	{
 		nodeCollection.sort( (node1, node2) -> node1.getName().compareTo(node2.getName()) );
 		return nodeCollection;
 	}
 
-	public ArrayList<Node> subNodes(Node aNode)
+	public List<Node> subNodes(Node aNode)
 	{
 		Collection<Branch> aCollection = new Vector<Branch>();
-		ArrayList<Node> subNodesList = new ArrayList<>();
+		List<Node> subNodesList = new ArrayList<>();
 		Branch[] branchesToSubNodes = (Branch[])(branches.stream().filter( aBranch -> Objects.equals(aBranch.start(), aNode) ).toArray());
 		Consumer<Branch> aConsumer = (Branch aBranch) -> { subNodesList.add(aBranch.end()); };
 		aCollection.forEach(aConsumer);
@@ -130,12 +165,15 @@ public class Forest extends Object {
 
 	public Node whichOfNodes(Point aPoint) 
 	{
-		return nodes.stream().filter(aNode -> aNode.getLocation().getX() < aPoint.getX() && 
-											 aNode.getLocation().getX()+aNode.getExtent().getX() > aPoint.getX() &&
-											 aNode.getLocation().getY() < aPoint.getY() &&
-											 aNode.getLocation().getY()+aNode.getExtent().getY() > aPoint.getY())
-							 .findFirst()
-							 .orElse(null);
+		Predicate<Node> aPredicate = (Node aNode) -> {return (aNode.getLocation().getX() < aPoint.getX() && aNode.getLocation().getX()+aNode.getExtent().getX() > aPoint.getX() && aNode.getLocation().getY() < aPoint.getY() && aNode.getLocation().getY()+aNode.getExtent().getY() > aPoint.getY()); };
+		return nodes.stream().filter(aPredicate).findFirst().orElse(null);
+		// return nodes.stream().filter(aNode -> aNode.getLocation().getX() < aPoint.getX() && 
+		// 									 aNode.getLocation().getX()+aNode.getExtent().getX() > aPoint.getX() &&
+		// 									 aNode.getLocation().getY() < aPoint.getY() &&
+		// 									 aNode.getLocation().getY()+aNode.getExtent().getY() > aPoint.getY())
+		// 					 .findFirst()
+		// 					 .orElse(null);
+		
 	}
 
 }
