@@ -67,7 +67,7 @@ public class Forest extends Object {
 			anIndex++;
 		}
 		
-		aNode.setLocation(new Point(aPoint.x, aPoint.y+((bounds.height-aPoint.y)/2)));
+		if(!Objects.equals(aNode.getStatus(), Constants.Visited)) aNode.setLocation(new Point(aPoint.x, aPoint.y+((bounds.height-aPoint.y)/2)));
 
 		if(aModel != null) this.propagate(aModel);
 
