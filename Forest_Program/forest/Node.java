@@ -25,6 +25,7 @@ public class Node extends Component
 	public void Node(String aString)
 	{
 		this.setName(aString);
+		this.bounds = new Rectangle();
 	}
 
 	public void draw(Graphics aGraphics)
@@ -61,11 +62,13 @@ public class Node extends Component
 	public void setExtent(Point aPoint)
 	{
 		this.extent = aPoint;
+		this.bounds.setSize(aPoint.x+Constants.Margin.x, aPoint.y+Constants.Margin.y);
 	}
 
 	public void setLocation(Point aPoint)
 	{
 		this.location = aPoint;
+		this.bounds.setLocation(aPoint.x-Constants.Margin.x, aPoint.y-Constants.Margin.y);
 	}
 
 	public void setName(String aString)
@@ -78,18 +81,18 @@ public class Node extends Component
 		this.status = anInteger;
 	}
 
-	public void setBounds()
-	{
-		// Double x = new Double(this.location.getX()-Constants.Margin.getX());
-		// Double y = new Double(this.location.getY()-Constants.Margin.getY());
-		// Double width = new Double(this.extent.getX()+Constants.Margin.getX());
-		// Double height = new Double(this.extent.getY()+Constants.Margin.getY());
-		this.bounds = new Rectangle(this.location.x-Constants.Margin.x, 
-									this.location.y-Constants.Margin.y, 
-									this.extent.x+Constants.Margin.x, 
-									this.extent.y+Constants.Margin.y);
-		// this.bounds = new Rectangle(x.intValue(), y.intValue(), width.intValue(), height.intValue());
-	}
+	// public void setBounds()
+	// {
+	// 	// Double x = new Double(this.location.getX()-Constants.Margin.getX());
+	// 	// Double y = new Double(this.location.getY()-Constants.Margin.getY());
+	// 	// Double width = new Double(this.extent.getX()+Constants.Margin.getX());
+	// 	// Double height = new Double(this.extent.getY()+Constants.Margin.getY());
+	// 	this.bounds = new Rectangle(this.location.x-Constants.Margin.x, 
+	// 								this.location.y-Constants.Margin.y, 
+	// 								this.extent.x+Constants.Margin.x, 
+	// 								this.extent.y+Constants.Margin.y);
+	// 	// this.bounds = new Rectangle(x.intValue(), y.intValue(), width.intValue(), height.intValue());
+	// }
 
 	protected int stringHeight(String string)
 	{

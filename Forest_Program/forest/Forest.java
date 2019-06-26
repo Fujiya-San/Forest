@@ -165,7 +165,8 @@ public class Forest extends Object {
 
 	public Node whichOfNodes(Point aPoint) 
 	{
-		Predicate<Node> aPredicate = (Node aNode) -> {return (aNode.getLocation().getX() < aPoint.getX() && aNode.getLocation().getX()+aNode.getExtent().getX() > aPoint.getX() && aNode.getLocation().getY() < aPoint.getY() && aNode.getLocation().getY()+aNode.getExtent().getY() > aPoint.getY()); };
+		// Predicate<Node> aPredicate = (Node aNode) -> {return (aNode.getLocation().getX() < aPoint.getX() && aNode.getLocation().getX()+aNode.getExtent().getX() > aPoint.getX() && aNode.getLocation().getY() < aPoint.getY() && aNode.getLocation().getY()+aNode.getExtent().getY() > aPoint.getY()); };
+		Predicate<Node> aPredicate = (Node aNode) -> {return aNode.getBounds().contains(aPoint); };
 		return nodes.stream().filter(aPredicate).findFirst().orElse(null);
 		// return nodes.stream().filter(aNode -> aNode.getLocation().getX() < aPoint.getX() && 
 		// 									 aNode.getLocation().getX()+aNode.getExtent().getX() > aPoint.getX() &&
