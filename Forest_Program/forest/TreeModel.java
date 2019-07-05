@@ -20,7 +20,6 @@ public class TreeModel extends Model {
 
 	public TreeModel(File aFile)
 	{
-
 		super();
 		this.dependents = new ArrayList<TreeView>();
 		this.forest = new Forest();
@@ -61,7 +60,6 @@ public class TreeModel extends Model {
 		forest = null;
 		return;
 	}
-
 	
 	/**
 	 * 樹状整列を行うメソッドです。
@@ -75,13 +73,6 @@ public class TreeModel extends Model {
 	 */
 	public void changed()
 	{
-		Iterator<TreeView> anIteratorTV = dependents.iterator();
-		while (anIteratorTV.hasNext())
-		{
-			TreeView aView = anIteratorTV.next();
-			aView.update();
-		}
-		return;
 
 		// Iterator<TreeView> anIteratorTV = dependents.iterator();
 		// while (anIteratorTV.hasNext())
@@ -102,14 +93,6 @@ public class TreeModel extends Model {
 	{
     	return this.forest;
 	}
-	/**
-	 * 樹状整列をそれ自身を応答するメソッドです。
-	 * @return
-	 */
-	public Forest forest()
-	{
-    	return this.forest;
-	}
 
 	/**
 	 * 樹状整列をそれ自身を応答するメソッドです。
@@ -117,7 +100,6 @@ public class TreeModel extends Model {
 	 */
 	protected void read(File aFile)
 	{
-
 		try
 		{
 			Integer treesDataFlag = 0;
