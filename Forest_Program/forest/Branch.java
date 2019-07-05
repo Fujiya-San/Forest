@@ -13,7 +13,7 @@ public class Branch extends Object {
 	 * @param from 元のノード(親)
 	 * @param to 新たなノード(子)
 	 */
-	public void Branch(Node from, Node to) {
+	public Branch(Node from, Node to) {
 		this.start = from;
 		this.end = to;
 	}
@@ -29,7 +29,7 @@ public class Branch extends Object {
 		// Integer endY = this.end.getLocation().y + (this.end.getExtent().y / 2);
 		Integer startX = this.start.getBounds().x + this.start.getBounds().width;
 		Integer startY = this.start.getBounds().y + (this.start.getBounds().height / 2);
-		Integer endX = this.start.getBounds().x;
+		Integer endX = this.end.getBounds().x;
 		Integer endY = this.end.getBounds().y + (this.end.getExtent().y / 2);
 		aGraphics.drawLine(startX, startY, endX, endY);
 	}

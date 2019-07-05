@@ -7,22 +7,68 @@ import mvc.View;
 @SuppressWarnings("serial")
 public class TreeView extends View
 {
+	protected TreeModel model;
 
+	protected TreeController controller;
+
+	private Point offset;
 
 	public TreeView(TreeModel aModel)
 	{
-		super(aModel, new TreeController());
+		// super(aModel, new TreeController());
+		super(aModel);
+		// model = aModel;
+		// model.addDependent(this);
+		model = aModel;
+		model.addDependent(this);
+		controller = new TreeController();
+		controller.setModel(model);
+		controller.setView(this);
+		offset = new Point(0, 0);
+		return;
+
 	}
 
 	public void paintComponent(Graphics aGraphics)
 	{
-
+		this.update();
+		this.setFont(Constants.DefaultFont);
+		this.model.forest().draw(aGraphics);
+		// this.update(aGraphics);
 	}
 
-	public static Node whichOfNodes(Point aPoint)
+	public void scrollBy(Point aPoint)
 	{
-		new Forest().whichOfNodes(aPoint);
-		return null;
+		
+		int x = aPoint.x;
+		int y = aPoint.y;
+		this.scrollTo(new Point(x, y));
+		this.model.forest().arrange();
+		return;
+	}
+
+
+	/**
+	 * スクロール量を指定された座標に設定（絶対スクロール）する。
+	 * @param aPoint X軸とY軸の絶対スクロール量を表す座標
+	 * 良好（2010年7月25日）
+	 * 修正（2015年2月9日）
+	 */
+	public void scrollTo(Point aPoint)
+	{
+		model.forest().moveBounds(aPoint);
+		return;
+	}
+
+	// public static Node whichOfNodes(Point aPoint)
+	// {
+	// 	new Forest().whichOfNodes(aPoint);
+	// 	return null;
+	// }
+	
+	public Node whichOfNodes(Point aPoint)
+	{
+		return model.forest().whichOfNodes(aPoint);
 	}
 
 }

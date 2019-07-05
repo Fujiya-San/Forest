@@ -22,15 +22,21 @@ public class Node extends Component
 
 	private Rectangle bounds;
 
-	public void Node(String aString)
+	public Node(String aString)
 	{
+
 		this.setName(aString);
+		// this.setExtent(new Point(this.stringWidth(aString), this.stringHeight(aString)));
+		
+		// Point aPoint = new Point(0, 0);
 		this.bounds = new Rectangle();
+		this.setExtent(new Point(this.stringWidth(aString), this.stringHeight(aString)));
+		
 	}
 
 	public void draw(Graphics aGraphics)
 	{
-		aGraphics.drawRect(bounds.x, bounds.y, bounds.width, bounds.height);
+		aGraphics.drawRect(this.bounds.x, this.bounds.y, this.bounds.width, this.bounds.height);
 		aGraphics.drawString(this.name, this.location.x, this.location.y);
 	}
 
@@ -68,7 +74,7 @@ public class Node extends Component
 	public void setLocation(Point aPoint)
 	{
 		this.location = aPoint;
-		this.bounds.setLocation(aPoint.x-Constants.Margin.x, aPoint.y-Constants.Margin.y);
+		this.bounds.setLocation(aPoint.x-Constants.Margin.x, aPoint.y-this.stringHeight(this.name));
 	}
 
 	public void setName(String aString)
@@ -97,16 +103,20 @@ public class Node extends Component
 	protected int stringHeight(String string)
 	{
 		return Constants.DefaultFont.getSize();
+
+		// return 0;
 	}
 
 	protected int stringWidth(String string)
 	{
-		return Constants.DefaultFont.getSize()*string.length();
+		return Constants.DefaultFont.getSize()/2*string.length();
+		// return 0;
+
 	}
 
 	public String toString()
 	{
-		return null;
+		return this.name;
 	}
 
 }
