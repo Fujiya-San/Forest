@@ -103,6 +103,7 @@ public class Node extends Component
 	protected int stringHeight(String string)
 	{
 		return Constants.DefaultFont.getSize();
+
 		// return 0;
 	}
 
@@ -110,6 +111,7 @@ public class Node extends Component
 	{
 		return Constants.DefaultFont.getSize()/2*string.length();
 		// return 0;
+
 	}
 
 	public String toString()
