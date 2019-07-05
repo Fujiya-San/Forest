@@ -78,7 +78,6 @@ public class Forest extends Object {
 		// this.arrange(this.rootNodesList.get(0), aPoint, aModel);
 		// this.arrange(this.nodes.get(0), aPoint, aModel);
 		// this.arrange(rootNodesList.get(0), new Point(bounds.x, bounds.y+bounds.height), aModel);
-
 	}
 
 	protected Point arrange(Node aNode, Point aPoint,  TreeModel aModel) 
@@ -94,7 +93,6 @@ public class Forest extends Object {
 		
 		if(this.bounds.x+this.bounds.width < aPoint.x-aNode.getBounds().width) this.bounds.setSize(aPoint.x+aNode.getBounds().x, this.bounds.height);
 		if(this.bounds.y+this.bounds.height < aPoint.y) this.bounds.setSize(this.bounds.width, aPoint.y);
-
 
 		Integer anIndex = 0;
 		for(Node aSubNode : subNodes)
@@ -162,7 +160,6 @@ public class Forest extends Object {
 			System.out.println(e);
 		}
 		aModel.changed();
-
 		
 	}
 
@@ -190,13 +187,13 @@ public class Forest extends Object {
 		return null;
 	}
 
-	protected List<Node> sortNodes(List<Node> nodeCollection) 
+	protected ArrayList<Node> sortNodes(ArrayList<Node> nodeCollection) 
 	{
 		nodeCollection.sort( (node1, node2) -> node1.getName().compareTo(node2.getName()) );
 		return nodeCollection;
 	}
 
-	public List<Node> subNodes(Node aNode)
+	public ArrayList<Node> subNodes(Node aNode)
 	{
 		// Collection<Branch> aCollection = new Vector<Branch>();
 		ArrayList<Node> subNodesList = new ArrayList<>();
