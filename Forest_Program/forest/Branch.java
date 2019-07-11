@@ -23,10 +23,6 @@ public class Branch extends Object {
 	 * @param aGraphics 描画引数
 	 */
 	public void draw(Graphics aGraphics) {
-		// Integer startX = this.start.getLocation().x + this.start.getExtent().x;
-		// Integer startY = this.start.getLocation().y + (this.start.getExtent().y / 2);
-		// Integer endX = this.start.getLocation().x;
-		// Integer endY = this.end.getLocation().y + (this.end.getExtent().y / 2);
 		Integer startX = this.start.getBounds().x + this.start.getBounds().width;
 		Integer startY = this.start.getBounds().y + (this.start.getBounds().height / 2);
 		Integer endX = this.end.getBounds().x;
