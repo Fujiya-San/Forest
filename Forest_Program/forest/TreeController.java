@@ -69,9 +69,6 @@ public class TreeController extends Controller
 	public void mouseClicked(MouseEvent aMouseEvent)
 	{
 		Point aPoint = aMouseEvent.getPoint();
-		// aPoint.translate(view.scrollAmount().x, view.scrollAmount().y);
-		// System.out.println(aPoint);
-		// TreeView.whichOfNodes(aPoint);
 		String nodeName = view.whichOfNodes(aPoint).getName();
 		if(nodeName != null)
 		{

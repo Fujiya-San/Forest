@@ -9,30 +9,21 @@ import java.awt.FontMetrics;
 @SuppressWarnings("serial")
 public class Node extends Component
 {
-
 	private String name;
-
-	// private Point location;
+	
 	private Point location;
 
-	// private Point extent;
 	private Point extent;
 
-	// private Integer status;
 	private Integer status;
 
 	private Rectangle bounds;
 
 	public Node(String aString)
 	{
-
 		this.setName(aString);
-		// this.setExtent(new Point(this.stringWidth(aString), this.stringHeight(aString)));
-		
-		// Point aPoint = new Point(0, 0);
 		this.bounds = new Rectangle();
-		this.setExtent(new Point(this.stringWidth(aString), this.stringHeight(aString)));
-		
+		this.setExtent(new Point(this.stringWidth(aString), this.stringHeight(aString)));	
 	}
 
 	public void draw(Graphics aGraphics)
@@ -88,31 +79,15 @@ public class Node extends Component
 		this.status = anInteger;
 	}
 
-	// public void setBounds()
-	// {
-	// 	// Double x = new Double(this.location.getX()-Constants.Margin.getX());
-	// 	// Double y = new Double(this.location.getY()-Constants.Margin.getY());
-	// 	// Double width = new Double(this.extent.getX()+Constants.Margin.getX());
-	// 	// Double height = new Double(this.extent.getY()+Constants.Margin.getY());
-	// 	this.bounds = new Rectangle(this.location.x-Constants.Margin.x, 
-	// 								this.location.y-Constants.Margin.y, 
-	// 								this.extent.x+Constants.Margin.x, 
-	// 								this.extent.y+Constants.Margin.y);
-	// 	// this.bounds = new Rectangle(x.intValue(), y.intValue(), width.intValue(), height.intValue());
-	// }
 
 	protected int stringHeight(String string)
 	{
-		// return Constants.DefaultFont.getSize();
-		// return 0;
 		FontMetrics aFontMetrics = super.getFontMetrics(Constants.DefaultFont);
 		return aFontMetrics.getHeight();
 	}
 
 	protected int stringWidth(String string)
 	{
-		// return Constants.DefaultFont.getSize()/2*string.length();
-		// return 0;
 		FontMetrics aFontMetrics = super.getFontMetrics(Constants.DefaultFont);
 		return aFontMetrics.stringWidth(string);
 	}

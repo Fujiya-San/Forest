@@ -15,10 +15,7 @@ public class TreeView extends View
 
 	public TreeView(TreeModel aModel)
 	{
-		// super(aModel, new TreeController());
 		super(aModel);
-		// model = aModel;
-		// model.addDependent(this);
 		model = aModel;
 		model.addDependent(this);
 		controller = new TreeController();
@@ -34,7 +31,6 @@ public class TreeView extends View
 		this.update();
 		this.setFont(Constants.DefaultFont);
 		this.model.forest().draw(aGraphics);
-		// this.update(aGraphics);
 	}
 
 	public void scrollBy(Point aPoint)
@@ -60,11 +56,6 @@ public class TreeView extends View
 		return;
 	}
 
-	// public static Node whichOfNodes(Point aPoint)
-	// {
-	// 	new Forest().whichOfNodes(aPoint);
-	// 	return null;
-	// }
 	
 	public Node whichOfNodes(Point aPoint)
 	{
