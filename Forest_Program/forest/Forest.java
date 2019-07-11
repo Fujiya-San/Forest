@@ -54,7 +54,11 @@ public class Forest extends Object {
 		// this.rootNodes();
 		// this.rootNodesList = this.rootNodes();
 		// this.rootNodes();
-		Consumer<Node> aConsumer = (Node aNode) -> { this.arrange(aNode, new Point(aNode.getLocation().x, aNode.getLocation().y), null); };
+		// Consumer<Node> aConsumer = (Node aNode) -> { this.arrange(aNode, new Point(aNode.getLocation().x, aNode.getLocation().y), null); };
+		// this.rootNodesList.forEach( aConsumer );
+		// 
+		this.initNodeStatus();
+		Consumer<Node> aConsumer = (Node aNode) -> { this.arrange(aNode, new Point(aNode.getLocation().x+this.bounds.x, aNode.getLocation().y+this.bounds.y), null); };
 		this.rootNodesList.forEach( aConsumer );
 
 	}
@@ -166,6 +170,12 @@ public class Forest extends Object {
 	public void moveBounds(Point aPoint)
 	{
 		this.bounds.setLocation(aPoint);
+	}
+
+	protected void initNodeStatus()
+	{
+		Consumer<Node> aConsumer = (Node aNode) -> { aNode.setStatus(Constants.UnVisited); };
+		this.nodes.forEach(aConsumer);
 	}
 
 	public ArrayList<Node> rootNodes() 

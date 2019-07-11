@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.FontMetrics;
 
 @SuppressWarnings("serial")
 public class Node extends Component
@@ -102,14 +103,18 @@ public class Node extends Component
 
 	protected int stringHeight(String string)
 	{
-		return Constants.DefaultFont.getSize();
+		// return Constants.DefaultFont.getSize();
 		// return 0;
+		FontMetrics aFontMetrics = super.getFontMetrics(Constants.DefaultFont);
+		return aFontMetrics.getHeight();
 	}
 
 	protected int stringWidth(String string)
 	{
-		return Constants.DefaultFont.getSize()/2*string.length();
+		// return Constants.DefaultFont.getSize()/2*string.length();
 		// return 0;
+		FontMetrics aFontMetrics = super.getFontMetrics(Constants.DefaultFont);
+		return aFontMetrics.stringWidth(string);
 	}
 
 	public String toString()
