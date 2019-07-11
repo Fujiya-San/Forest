@@ -24,8 +24,6 @@ public class TreeModel extends Model {
 		this.dependents = new ArrayList<TreeView>();
 		this.forest = new Forest();
 		this.read(aFile);
-		// this.forest.getNodes().forEach((Node aNode) -> { System.out.println(aNode.getName());});
-		// this.initialize();
 		return;
 	}
 
@@ -41,15 +39,7 @@ public class TreeModel extends Model {
 	*
     */
 	public void animate()
-	{
-		// Iterator<Forest> anIteratorF = dependents.iterator();
-	 //  while(anIteratorF.hasnext())
-	 //  {
-	 //   Forest aForest = anIteratorF.next(); 
-	 //   //Forestのメッセージ送信の受け取りかた？　送信のしかた?を知りたい
-	   
-	 //  }
-	 	
+	{	
 	 	this.arrange();
 	 	System.out.println("aaaaaaa");
 	}
@@ -73,17 +63,8 @@ public class TreeModel extends Model {
 	 */
 	public void changed()
 	{
-
-		// Iterator<TreeView> anIteratorTV = dependents.iterator();
-		// while (anIteratorTV.hasNext())
-		// {
-		// 	TreeView aView = anIteratorTV.next();
-		// 	aView.paintComponent(aView.getGraphics());
-		// 	// aView.update();
-		// }
 		dependents.forEach((TreeView aView) -> { aView.paintComponent(aView.getGraphics());});
 		return;
-
 	}
 	/**
 	 * 樹状整列をそれ自身を応答するメソッドです。
@@ -114,8 +95,6 @@ public class TreeModel extends Model {
 			{
 				String[] data = line.split(", ");
 
-				// System.out.println(line);
-				// System.out.println(data[0]);
 				if(Objects.equals(line, Constants.TagOfTrees))
 				{
 					treesDataFlag = 1;
@@ -128,49 +107,24 @@ public class TreeModel extends Model {
 					branchesDataFlag = 0;
 				}else if(Objects.equals(line, Constants.TagOfBranches))
 				{
-					// System.out.println("Objects.equals(line, Constants.TagOfBranches) : " + Objects.equals(line, Constants.TagOfBranches));
 					treesDataFlag = 0;
 					nodesDataFlag = 0;
 					branchesDataFlag = 1;
 				}else
 				{
-					// System.out.println(data[0]);
-					// System.out.println("Objects.equals(line, Constants.TagOfBranches) : " + Objects.equals(line, Constants.TagOfBranches));
-					// System.out.println("nodesDataFlag : " + nodesDataFlag);
 					if(nodesDataFlag == 1)
 					{
-
 						Node aNode = new Node(data[1]);
 						aNode.setLocation(new Point(0, Integer.valueOf(data[0])*Constants.DefaultFont.getSize()));
 						aNode.setStatus(Constants.UnVisited);
 						nodeMap.put(data[0], aNode);
-						// System.out.print
-						// System.out.println(nodeMap.get(data[0]).getName());
 						this.forest.addNode(aNode);
-						// System.out.println(data[0] + ", " + data[1]);
 					}
-					// System.out.println("Objects.equals(line, Constants.TagOfBranches) : " + Objects.equals(line, Constants.TagOfBranches));
-					// System.out.println("branchesDataFlagaaaa : " + branchesDataFlag);
 					if(branchesDataFlag == 1)
 					{
-						// System.out.println("data[0] : " + data[0] + ", data[1] : " + data[1]);
-						// System.out.println(nodeMap.get(data[0]).getName() + ", " + nodeMap.get(data[1]).getName());
-						// System.out.println("setBranch : " + nodeMap.get(data[0]) + ", " + nodeMap.get(data[1]));
 						this.forest.addBranch(new Branch(nodeMap.get(data[0]), nodeMap.get(data[1])));
 					}
-
-					// System.out.println("Objects.equals(line, Constants.TagOfBranches) : " + Objects.equals(line, Constants.TagOfBranches));
-				
 				}
-
-				// if(data.length > 1)
-				// {
-				// 	System.out.println(data[1]);
-				// }
-
-
-				
-				// System.out.println("branchesDataFlag : " + branchesDataFlag);
 			}	
 		}catch(Exception e)
 		{
