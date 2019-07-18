@@ -60,13 +60,13 @@ public class Node extends Component
 	public void setExtent(Point aPoint)
 	{
 		this.extent = aPoint;
-		this.bounds.setSize(aPoint.x+Constants.Margin.x, aPoint.y+Constants.Margin.y);
+		this.bounds.setSize(aPoint.x+Constants.Margin.x*2, aPoint.y+Constants.Margin.y);
 	}
 
 	public void setLocation(Point aPoint)
 	{
 		this.location = aPoint;
-		this.bounds.setLocation(aPoint.x-Constants.Margin.x, aPoint.y-this.stringHeight(this.name));
+		this.bounds.setLocation(aPoint.x-Constants.Margin.x, aPoint.y-this.stringHeight(this.name)+Constants.Margin.y);
 	}
 
 	public void setName(String aString)

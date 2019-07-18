@@ -11,7 +11,7 @@ public class TreeView extends View
 
 	protected TreeController controller;
 
-	private Point offset;
+	// private Point offset;
 
 	public TreeView(TreeModel aModel)
 	{
@@ -21,7 +21,7 @@ public class TreeView extends View
 		controller = new TreeController();
 		controller.setModel(model);
 		controller.setView(this);
-		offset = new Point(0, 0);
+		// offset = new Point(0, 0);
 		return;
 
 	}
@@ -29,16 +29,16 @@ public class TreeView extends View
 	public void paintComponent(Graphics aGraphics)
 	{
 		this.update();
-		this.setFont(Constants.DefaultFont);
+		// this.setFont(Constants.DefaultFont);
 		this.model.forest().draw(aGraphics);
 	}
 
-	public void scrollBy(Point aPoint)
+	public void scrollBy2(Point aPoint)
 	{
 		
 		int x = aPoint.x;
 		int y = aPoint.y;
-		this.scrollTo(new Point(x, y));
+		this.scrollTo2(new Point(x, y));
 		this.model.forest().arrange();
 		return;
 	}
@@ -50,8 +50,9 @@ public class TreeView extends View
 	 * 良好（2010年7月25日）
 	 * 修正（2015年2月9日）
 	 */
-	public void scrollTo(Point aPoint)
+	public void scrollTo2(Point aPoint)
 	{
+		// model.forest().moveForest(aPoint);
 		model.forest().moveBounds(aPoint);
 		return;
 	}

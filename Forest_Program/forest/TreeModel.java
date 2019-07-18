@@ -146,7 +146,7 @@ public class TreeModel extends Model {
 	 * @return
 	 */
 	public ArrayList<Node> roots() {
-		return null;
+		return this.forest.rootNodes();
 	}
 
 }
