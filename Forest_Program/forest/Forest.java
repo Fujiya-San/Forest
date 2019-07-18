@@ -60,6 +60,7 @@ public class Forest extends Object {
 
 	protected Point arrange(Node aNode, Point aPoint,  TreeModel aModel) 
 	{
+		// System.out.println(this.rootNodesList.get(0).getStatus());
 		ArrayList<Node> subNodes = this.subNodes(aNode);
 		subNodes = this.sortNodes(subNodes);
 
@@ -76,17 +77,17 @@ public class Forest extends Object {
 			if(!Objects.equals(aSubNode.getStatus(), Constants.Visited) && anIndex == 0 && aModel != null)
 			{
 				this.arrange(aSubNode, new Point(aPoint.x+aNode.getBounds().width+Constants.Interval.x, this.bounds.y+this.bounds.height), aModel);
-				anIndex++;
+				
 			}else if(!Objects.equals(aSubNode.getStatus(), Constants.Visited) && aModel != null)
 			{
 				this.arrange(aSubNode, new Point(aPoint.x+aNode.getBounds().width+Constants.Interval.x, this.bounds.y+this.bounds.height+aNode.getBounds().height+Constants.Interval.y), aModel);
-				anIndex++;
+				
 			}else if(aModel == null)
 			{
 				this.arrange(aSubNode, new Point(aSubNode.getLocation().x+this.bounds.x, aSubNode.getLocation().y+this.bounds.y), aModel);
-				anIndex++;
+				
 			}
-			
+			anIndex++;
 
 		}
 		
@@ -105,6 +106,66 @@ public class Forest extends Object {
 
 		return null;
 	}
+	
+	
+	// 	protected Point arrange(Node aNode, Point aPoint,  TreeModel aModel) 
+	// {
+	// 	// System.out.println(aNode.getName());
+	// 	ArrayList<Node> subNodes = this.subNodes(aNode);
+	// 	subNodes = this.sortNodes(subNodes);
+
+	// 	// if(!Objects.equals(aNode.getStatus(), Constants.Visited)) aNode.setLocation(aPoint);
+	// 	// System.out.println("aNode.getLocation() : (" + aNode.getLocation().x + ", " + aNode.getLocation().y + "),     aPoint : (" + aPoint.x + ", " + aPoint.y + ")");
+	// 	aNode.setLocation(aPoint);
+	// 	// aNode.setLocation(new Point(aPoint.x+scrollAmount.x, aPoint.y+scrollAmount.y));
+	// 	// scrollAmount.x = 0;
+	// 	// scrollAmount.y = 0;
+
+	// 	if(aModel != null) this.propagate(aModel);
+		
+	// 	if(this.bounds.x+this.bounds.width < aNode.getBounds().x+aNode.getBounds().width) this.bounds.setSize(aNode.getBounds().x+aNode.getBounds().width-this.bounds.x, this.bounds.height);
+	// 	// System.out.println((this.bounds.y+this.bounds.height) + " < " + (aNode.getBounds().y+aNode.getBounds().height) );
+	// 	if(this.bounds.y+this.bounds.height < aNode.getBounds().y+aNode.getBounds().height) this.bounds.setSize(this.bounds.width, aNode.getBounds().y+aNode.getBounds().height-this.bounds.y);
+		
+	// 	Integer anIndex = 0;
+	// 	for(Node aSubNode : subNodes)
+	// 	{
+	// 		// System.out.println(aSubNode.getName() + "    size : " + superNodes(aSubNode).size());
+	// 		if(!Objects.equals(aSubNode.getStatus(), Constants.Visited) && anIndex == 0 && aModel != null)
+	// 		{
+	// 			// this.arrange(aSubNode, new Point(aPoint.x+aNode.getBounds().width+Constants.Interval.x, aPoint.y+(aNode.getBounds().height)+(Constants.Interval.y*anIndex)), aModel);
+	// 			this.arrange(aSubNode, new Point(aNode.getBounds().x+aNode.getBounds().width+Constants.Interval.x, aNode.getLocation().y), aModel);
+	// 			// anIndex++;
+	// 		}else if(!Objects.equals(aSubNode.getStatus(), Constants.Visited) && aModel != null)
+	// 		{
+	// 			this.arrange(aSubNode, new Point(aNode.getBounds().x+aNode.getBounds().width+Constants.Interval.x, this.bounds.y+this.bounds.height+aSubNode.getBounds().height+Constants.Interval.y), aModel);
+	// 			// anIndex++;
+	// 		}else if(aModel == null && !Objects.equals(aSubNode.getStatus(), Constants.Visited))
+	// 		{
+	// 			this.arrange(aSubNode, new Point(aSubNode.getLocation().x+this.bounds.x, aSubNode.getLocation().y+this.bounds.y), aModel);
+	// 			// anIndex++;
+	// 		}
+	// 		anIndex++;
+
+	// 	}
+		
+	// 	// if(!Objects.equals(aNode.getStatus(), Constants.Visited)) aNode.setLocation(new Point(aPoint.x, aPoint.y+((bounds.height-aPoint.y)/2)));
+	// 	if(aModel != null)
+	// 	{
+	// 		aNode.setLocation(new Point(aNode.getLocation().x, aNode.getLocation().y+((this.bounds.height-aNode.getLocation().y)/2)));
+	// 		this.propagate(aModel);
+	// 	}else
+	// 	{
+	// 		aNode.setLocation(new Point(aNode.getLocation().x+this.bounds.x, aNode.getLocation().y+this.bounds.y));
+	// 	}
+		
+
+	// 	// if(aModel != null) this.propagate(aModel);
+
+	// 	aNode.setStatus(Constants.Visited);
+
+	// 	return null;
+	// }
 
 	public Rectangle bounds() 
 	{
@@ -148,21 +209,38 @@ public class Forest extends Object {
 		this.nodes.forEach(aConsumer);
 	}
 
+	// public void moveForest(Point aPoint)
+	// {
+	// 	this.bounds.setLocation(new Point(this.bounds.x+aPoint.x, this.bounds.y+aPoint.y));
+	// 	Consumer<Node> aConsumer = (Node aNode) -> { aNode.setLocation(new Point(aNode.getLocation().x+aPoint.x, aNode.getLocation().y+aPoint.y)); };
+	// 	this.nodes.forEach(aConsumer);
+	// 	// scrollAmount.x += aPoint.x;
+	// 	// scrollAmount.y -= aPoint.y;
+	// }
+
 	public ArrayList<Node> rootNodes() 
 	{
-		Integer anIndex = 0;
-		for(Node aNode : nodes)
+		if(this.rootNodesList.size() == 0)
 		{
-			anIndex = 0 ;
-			for(Branch aBranch : branches)
+			Integer anIndex = 0;
+			for(Node aNode : nodes)
 			{
-				if(Objects.equals(aNode.getName(), aBranch.end().getName())) break;
-				else if(anIndex == branches.size()-1) this.rootNodesList.add(aNode);
-				anIndex++;
+				anIndex = 0 ;
+				for(Branch aBranch : branches)
+				{
+					if(Objects.equals(aNode.getName(), aBranch.end().getName())) break;
+					else if(anIndex == branches.size()-1) this.rootNodesList.add(aNode);
+					anIndex++;
+				}
 			}
+			rootNodesList = this.sortNodes(rootNodesList);
+			return this.rootNodesList;
 		}
-		rootNodesList = this.sortNodes(rootNodesList);
-		return null;
+		else
+		{
+			return this.rootNodesList;
+		}
+		
 	}
 
 	protected ArrayList<Node> sortNodes(ArrayList<Node> nodeCollection) 
