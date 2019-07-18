@@ -43,6 +43,7 @@ public class Example extends Object
 		 // MVCを作成する。
 		TreeModel aModel = new TreeModel(aFile);
 		TreeView aView = new TreeView(aModel);
+		aView.setFont(Constants.DefaultFont);
 
 		// ウィンドウを生成して開く。
 		JFrame aWindow = new JFrame(aFile.getName());
