@@ -8,40 +8,69 @@ import java.awt.Component;
 import java.util.ArrayList;
 import java.util.Objects;
 
-
+/**
+ * 樹状整列におけるMVCのコントローラ（C）を担うクラスになります。
+ */
 public class TreeController extends Controller
 {
 
+	/**
+	 * 情報を握っているTreeModelのインスタンスを束縛する。
+	 */
 	protected TreeModel model;
 
+	/**
+	 * 表示を司るTreeViewのインスタンスを束縛する。
+	 */
 	protected TreeView view;
 
+	/**
+	 * 以前にマウスのボタンが押下された場所をPointのインスタンスとして束縛する。
+	 */
 	private Point changePlace;
 
+	/**
+	 * 現在にマウスのボタンが押下された場所をPointのインスタンスとして束縛する。
+	 */
 	private Point now;
 
+	/**
+	 * インスタンスを生成して応答する。
+	 * すべてのインスタンス変数（model, view, changePlace, now）をnull化する。
+	 */
 	public TreeController()
 	{
 		super();
 		model = null;
 		view = null;
+		changePlace = null;
+		now = null;
+		return;
 	}
 
+	/**
+	 * 指定されたモデルをインスタンス変数modelに設定する。
+	 * @param aModel このコントローラのモデル
+	 */
 	public void setModel(TreeModel aModel)
 	{
 		model = aModel;
 		return;
 	}
 
+	/**
+	 * マウスカーサの形状を移動の形に変化させ、指定されたマウスイベントからマウスカーサの位置を獲得して、
+	 * インスタンス変数changePlaceに設定すると共に、以前のマウスカーサの位置からの差分を計算する。
+	 * そして、その差分だけビューに対してスクロールを依頼し、その後にビューの再描画を依頼する。
+	 * 最後にインスタンス変数nowをインスタンス変数changePlaceに更新する。
+	 * @param aMouseEvent マウスイベント
+	 */
 	public void mouseDragged(MouseEvent aMouseEvent)
 	{
 		ArrayList<Node> rootNodes = this.model.roots();
 		for(Node aNode : rootNodes)
 		{
-
-			if(!(Objects.equals(aNode.getStatus(), Constants.Visited))) return;
-			System.out.println(aNode.getStatus());
-			
+			if(!(Objects.equals(aNode.getStatus(), Constants.Visited))) return;	
 		}
 		Cursor aCursor = Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR);
 		Component aComponent = (Component)aMouseEvent.getSource();
@@ -60,8 +89,6 @@ public class TreeController extends Controller
 	 * 指定されたビューをインスタンス変数viewに設定し、
 	 * ビューのマウスのリスナおよびモーションリスナそしてホイールリスナをこのコントローラにする。
 	 * @param aView このコントローラのビュー
-	 * 良好（2010年7月25日）
-	 * 修正（2015年2月9日）
 	 */
 	public void setView(TreeView aView)
 	{
@@ -76,7 +103,6 @@ public class TreeController extends Controller
 	 * マウスカーサの形状を十字に変化させ、指定されたマウスイベントからマウスカーサの位置を獲得して、
 	 * インスタンス変数nowに設定する共にインスタンス変数changePlaceをインスタンス変数nowに更新する。
 	 * @param aMouseEvent マウスイベント
-	 * 良好（2010年7月25日）
 	 */
 	public void mousePressed(MouseEvent aMouseEvent)
 	{
@@ -95,12 +121,12 @@ public class TreeController extends Controller
 	public void mouseClicked(MouseEvent aMouseEvent)
 	{
 		Point aPoint = aMouseEvent.getPoint();
-		// String aName = view.whichOfNodes(aPoint).getName();
 		Node aNode = view.whichOfNodes(aPoint);
 		if(aNode != null)
 		{
 			System.out.printf("%s%n", aNode.getName());
 		}
+		return;
 	}
 
 }

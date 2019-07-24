@@ -12,12 +12,27 @@ import java.util.HashMap;
 import java.awt.Point;
 import mvc.Model;
 
+/**
+ * 樹状整列におけるMVCのモデル（M）を担うクラスになります。
+ */
+
 public class TreeModel extends Model {
 
+	/**
+	 * 樹状整列それ自身を記憶しておくフィールドです。
+	 */
 	private Forest forest;
 
+	/**
+	 * 依存物 TreeViewのインスタンスたちを束縛する。
+	 */
 	protected ArrayList<TreeView> dependents;
 
+
+	/**
+	 * このクラスのインスタンスを生成するコンストラクタです。
+	 * @param  aFile 樹状整列データファイル
+	 */
 	public TreeModel(File aFile)
 	{
 		super();
@@ -27,6 +42,11 @@ public class TreeModel extends Model {
 		return;
 	}
 
+
+	/**
+	 * 指定されたビューを依存物に設定する
+	 * @param aView このモデルの依存物となるビュー
+	 */
 	public void addDependent(TreeView aView)
 	{
 		dependents.add(aView);
@@ -36,14 +56,16 @@ public class TreeModel extends Model {
 
    /**
 	* アニメーションを行うメソッドです。
-	*
     */
 	public void animate()
 	{	
 	 	this.arrange();
-	 	System.out.println("aaaaaaa");
+	 	return;
 	}
 
+	/**
+	 * 初期化する。
+	 */
 	private void initialize()
 	{
 		dependents = new ArrayList<TreeView>();
@@ -57,7 +79,9 @@ public class TreeModel extends Model {
 	public void arrange()
 	{
 	    this.forest.arrange(this);
+	    return;
 	}
+
     /**
 	 * モデルの内部状態が変化していたので、自分の依存物へupdateのメッセージを送信する。
 	 */
@@ -66,9 +90,10 @@ public class TreeModel extends Model {
 		dependents.forEach((TreeView aView) -> { aView.paintComponent(aView.getGraphics());});
 		return;
 	}
+
 	/**
 	 * 樹状整列をそれ自身を応答するメソッドです。
-	 * @return
+	 * @return 樹状整列それ自身
 	 */
 	public Forest forest()
 	{
@@ -133,6 +158,7 @@ public class TreeModel extends Model {
 
   		return;
 	}
+
     /**
      * 樹状整列の根源(ルート)になるノードを探し出して応答するメソッドです。
      * @return
@@ -141,6 +167,7 @@ public class TreeModel extends Model {
 	{
 		return null;
 	}
+	
 	/**
 	 * 樹状整列の根源(ルート)になるノードたちを探し出して応答するメソッドです。
 	 * @return
