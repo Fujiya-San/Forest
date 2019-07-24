@@ -2,10 +2,19 @@ package forest;
 
 import java.awt.Graphics;
 
+/**
+ * 樹状整列におけるブランチ（枝）を担うクラスになります。
+ */
 public class Branch extends Object {
 
+	/**
+	 * ブランチ（枝）の始点となるノードを記憶するフィールドです。
+	 */
 	private Node start;
 
+	/**
+	 * ブランチ（枝）の終点となるノードを記憶するフィールドです。
+	 */
 	private Node end;
 
 	/**
@@ -46,6 +55,10 @@ public class Branch extends Object {
 		return this.end;
 	}
 
+	/**
+	 * 自分自身を文字列に変換するメソッドです。
+	 * @return 自分自身を表す文字列
+	 */
 	public String toString() {
 		return null;
 	}
