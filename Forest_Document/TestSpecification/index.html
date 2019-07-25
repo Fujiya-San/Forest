@@ -67,6 +67,9 @@ p.belt-blue {
 	background-color : #ddeeff;
 	padding : 4px 8px;
 }
+p.text{
+	text-indent: 1em;
+}
 pre.belt {
 	background-color : #ddeeff;
 	padding : 4px 8px;
@@ -251,6 +254,47 @@ th {
 <div class="belt">
 <h3><a name="KanseiSaseteKudasai">完成させてください</a></h3>
 </div>
+    <h2> テスト方針<h2>
+        <h3>テスト・フェーズ全体の構成</h3>
+        <p>テストは以下のフェーズで行う</p>
+        <p><a href="images/testfaith.png"><img class="borderless" src="images/testfaith.png" width="100" height="340" alt="Vmodel"></a></p>
+        <h3>各テストの目的、方法</h3>
+        <h4>単体テスト</h4>
+        <p class="text">目的:個々のモジュール単位で独立して行うテスト　各モジュールが持つべき機能の検証や妥当性を確認する</p>
+        <p class="text">方法:ブラックボックステストやホワイトボックステスト</p>
+        <h4>結合テスト</h4>
+        <p class="text">目的:複数の関連するモジュールを結合する際に発生するエラーの検出</p>
+        <p class="text">方法:モジュール間の接点が機能するのかを調べる　ボトムアップテストを行う</p>
+        <h4>総合テスト</h4>
+        <p class="text">目的:全てのプログラムを結合し、システム全体が仕様通りに実現されているかどうか検証を行い、妥当性確認をする</P>
+        <p class="text">方法:機能・性能・操作性・負荷耐性・障害回復</p>
+        <h4>検証テスト</h4>
+        <p class="text">目的:使用する際にできるかどうかを検証し、妥当性確認を行う</p>
+        <p class="text">方法:システムの引き渡し時の承認テスト、引き渡し後の運用テストを行う</p>
+        <h3>テスト開始・完了基準</h3>
+			<h4>開始基準</h4>
+				<ul>
+					<li>テスト環境が利用できる状態になっているか
+					<li>テストツールが利用できる状態になっているか
+					<li>テストコードが利用できる状況になっているか
+					<li>テストデータが利用できる状態になっているか
+				</ul>
+			<h4>終了基準</h4>
+				<p class="text">スケジュールの終了日を持って終了する</p>
+				<p class="text">https://webrage.jp/techblog/test_management_03/</p>
+        <h3>テストケースの定義方法</h3>
+			<p class="text">各テストアイテムに対して入力、予想される結果、実行状態を文章化する</p>
+			<p class="text">想定されるユーザーの使い方から必要なテストの要件や、手順、具体的な方法などを文章化する</p>
+        <h3>テストルーツと使用データ</h3>
+			<p class="text">テストツール：Junit</p>
+			<p class="text">使用データ：</p>
+			<p class="text">https://eng-entrance.com/junit </p>
+			<p class="text">参考：ソフトウェア工学IIテスティング</p>
+        <h3>テストを実装する組織計画<br></h3>
+			
+        <p></p>
+        
+        
 <ul>
 	<li><a href="#Example">Example</a>（メインクラス）
 	<li><a href="#Forest">Forest</a>（）
@@ -282,7 +326,7 @@ th {
 						<td class="left-padding"><code>なし</code></td>
 						<td class="left-padding"><code>なし</code></td>
 						<td class="left-padding">なし</td>
-						<td class="left-padding">未確認</td>
+						<td class="left-padding">なし</td>
 					</tr>
 				</tbody>
 			</table>
@@ -307,9 +351,9 @@ th {
 						<td class="left-padding"><code><a href="../Program/index.html#Example-main">main(String[] arguments)</a></code></td>
 						<td class="left-padding"><code>void</code></td>
 						<td class="left-padding"><code>public static</code></td>
-						<td class="left-padding">ファイルを引数から読み込み、ウィンドウを開き、樹状整列のアニメションを実行する</td>
-						<td class="left-padding">未確認</td>
-						<td class="left-padding">未確認</td>
+						<td class="left-padding">コマンドラインを引数として受け取り、…、…。</td>
+						<td class="left-padding">バグ（2010年7月21日）</td>
+						<td class="left-padding">良好（2010年7月21日）</td>
 					</tr>
 				</tbody>
 			</table>
