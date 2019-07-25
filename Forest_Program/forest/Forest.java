@@ -79,9 +79,9 @@ public class Forest extends Object {
 	 * @param aModel モデル
 	 */
 	public void arrange(TreeModel aModel) {
-		this.bounds.setSize(0, Constants.DefaultFont.getSize());
+		this.bounds.setSize(0, 0);
 		this.rootNodes();
-		Consumer<Node> aConsumer = (Node aNode) -> { this.arrange(aNode, new Point(bounds.x, bounds.y+bounds.height), aModel); };
+		Consumer<Node> aConsumer = (Node aNode) -> { this.arrange(aNode, new Point(this.bounds.x, this.bounds.y+this.bounds.height+aNode.getBounds().height+Constants.Interval.y), aModel); };
 		rootNodesList.forEach( aConsumer );
 	}
 
@@ -105,8 +105,8 @@ public class Forest extends Object {
 		if(aModel != null) this.propagate(aModel);
 		
 		// 描画領域の範囲を更新する
-		if(this.bounds.x+this.bounds.width < aPoint.x-aNode.getBounds().width) this.bounds.setSize(aPoint.x+aNode.getBounds().x, this.bounds.height);
-		if(this.bounds.y+this.bounds.height < aPoint.y) this.bounds.setSize(this.bounds.width, aPoint.y);
+		if(this.bounds.x+this.bounds.width < aNode.getBounds().x+aNode.getBounds().width) this.bounds.setSize(aNode.getBounds().width+aNode.getBounds().x, this.bounds.height);
+		if(this.bounds.y+this.bounds.height < aNode.getBounds().y+aNode.getBounds().height) this.bounds.setSize(this.bounds.width, aNode.getBounds().y+aNode.getBounds().height);
 
 		// サブノードとその座標を引数として渡して再帰呼び出しする。
 		Integer anIndex = 0;
@@ -114,11 +114,11 @@ public class Forest extends Object {
 		{
 			if(!Objects.equals(aSubNode.getStatus(), Constants.Visited) && anIndex == 0 && aModel != null)
 			{
-				this.arrange(aSubNode, new Point(aPoint.x+aNode.getBounds().width+Constants.Interval.x, this.bounds.y+this.bounds.height), aModel);	
+				this.arrange(aSubNode, new Point(aNode.getBounds().x+aNode.getBounds().width+Constants.Interval.x+Constants.Margin.x, this.bounds.y+this.bounds.height-Constants.Margin.y-Constants.Margin.y), aModel);	
 			}else if(!Objects.equals(aSubNode.getStatus(), Constants.Visited) && aModel != null)
 			{
-				this.arrange(aSubNode, new Point(aPoint.x+aNode.getBounds().width+Constants.Interval.x, this.bounds.y+this.bounds.height+aNode.getBounds().height+Constants.Interval.y), aModel);
-			}else if(aModel == null)
+				this.arrange(aSubNode, new Point(aNode.getBounds().x+aNode.getBounds().width+Constants.Interval.x+Constants.Margin.x, this.bounds.y+this.bounds.height+aNode.getBounds().height+Constants.Interval.y), aModel);
+			}else if(aModel == null && !Objects.equals(aSubNode.getStatus(), Constants.Visited))
 			{
 				this.arrange(aSubNode, new Point(aSubNode.getLocation().x+this.bounds.x, aSubNode.getLocation().y+this.bounds.y), aModel);		
 			}
@@ -129,7 +129,7 @@ public class Forest extends Object {
 		// サブノード群の高さの半分の高さにノードの位置をセットする
 		if(aModel != null)
 		{
-			aNode.setLocation(new Point(aPoint.x, aPoint.y+((bounds.height-aPoint.y)/2)));
+			aNode.setLocation(new Point(aPoint.x, aNode.getBounds().y+((this.bounds.y+this.bounds.height-aNode.getBounds().y)/2)+(aNode.getBounds().height/2)-Constants.Margin.y));
 		}else
 		{
 			aNode.setLocation(new Point(aPoint.x+this.bounds.x, aPoint.y+this.bounds.y));

@@ -89,6 +89,8 @@
 	<target name="install" depends="all" description="install into application">
 		<copy file="${package}.jar" todir="${instdir}" />
 		<copy file="resource/data/forest.txt" todir="${instdir}" />
+		<copy file="resource/data/tree.txt" todir="${instdir}" />
+		<copy file="resource/data/semilattice.txt" todir="${instdir}" />
 		<exec executable="chmod">
 			<arg line="755 ${instdir}/../../MacOS/applet" />
 		</exec>
