@@ -44,6 +44,7 @@ public class TreeView extends View
 	{
 		this.update();
 		this.model.forest().draw(aGraphics);
+		return;
 	}
 
 	/**
@@ -55,19 +56,8 @@ public class TreeView extends View
 		
 		int x = aPoint.x;
 		int y = aPoint.y;
-		this.scrollTo2(new Point(x, y));
+		model.forest().moveBounds(new Point(x, y));
 		this.model.forest().arrange();
-		return;
-	}
-
-
-	/**
-	 * スクロール量を指定された座標に設定（絶対スクロール）する。
-	 * @param aPoint X軸とY軸の絶対スクロール量を表す座標
-	 */
-	public void scrollTo2(Point aPoint)
-	{
-		model.forest().moveBounds(aPoint);
 		return;
 	}
 

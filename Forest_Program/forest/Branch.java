@@ -25,6 +25,7 @@ public class Branch extends Object {
 	public Branch(Node from, Node to) {
 		this.start = from;
 		this.end = to;
+		return;
 	}
 
 	/**
@@ -37,6 +38,7 @@ public class Branch extends Object {
 		Integer endX = this.end.getBounds().x;
 		Integer endY = this.end.getBounds().y + (this.end.getExtent().y / 2);
 		aGraphics.drawLine(startX, startY, endX, endY);
+		return;
 	}
 
 	/**
@@ -60,7 +62,15 @@ public class Branch extends Object {
 	 * @return 自分自身を表す文字列
 	 */
 	public String toString() {
-		return null;
+		StringBuffer aBuffer = new StringBuffer();
+		Class<?> aClass = this.getClass();
+		aBuffer.append(aClass.getName());
+		aBuffer.append(" [親ノード：");
+		aBuffer.append(this.start.getName());
+		aBuffer.append(", 子ノード：");
+		aBuffer.append(this.end.getName());
+		aBuffer.append("]");
+		return aBuffer.toString();
 	}
 
 }

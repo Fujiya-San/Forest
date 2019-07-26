@@ -39,7 +39,6 @@ public class Example extends Object
 			System.exit(1);
 		}
 
-
 		 // MVCを作成する。
 		TreeModel aModel = new TreeModel(aFile);
 		TreeView aView = new TreeView(aModel);
@@ -56,8 +55,6 @@ public class Example extends Object
 
 		// 樹状整列のアニメーションを行う。
 		aModel.animate();
-
-
 
 		return;
 	}
