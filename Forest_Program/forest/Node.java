@@ -57,6 +57,7 @@ public class Node extends Component
 	{
 		aGraphics.drawRect(this.bounds.x, this.bounds.y, this.bounds.width, this.bounds.height);
 		aGraphics.drawString(this.name, this.location.x, this.location.y);
+		return;
 	}
 
 	/**
@@ -112,6 +113,7 @@ public class Node extends Component
 	{
 		this.extent = aPoint;
 		this.bounds.setSize(aPoint.x+Constants.Margin.x*2, aPoint.y+Constants.Margin.y);
+		return;
 	}
 
 	/**
@@ -122,6 +124,7 @@ public class Node extends Component
 	{
 		this.location = aPoint;
 		this.bounds.setLocation(aPoint.x-Constants.Margin.x, aPoint.y-this.stringHeight(this.name)+Constants.Margin.y);
+		return;
 	}
 
 	/**
@@ -131,6 +134,7 @@ public class Node extends Component
 	public void setName(String aString)
 	{
 		this.name = aString;
+		return;
 	}
 
 	/**
@@ -140,6 +144,7 @@ public class Node extends Component
 	public void setStatus(Integer anInteger)
 	{
 		this.status = anInteger;
+		return;
 	}
 
 	/**
