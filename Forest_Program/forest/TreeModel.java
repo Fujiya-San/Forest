@@ -60,6 +60,7 @@ public class TreeModel extends Model {
 	public void animate()
 	{	
 	 	this.arrange();
+	 	// System.out.println(this.forest.toString());
 	 	return;
 	}
 
@@ -111,11 +112,11 @@ public class TreeModel extends Model {
 			Integer treesDataFlag = 0;
 			Integer nodesDataFlag = 0;
 			Integer branchesDataFlag = 0;
+			StringBuffer aBuffer = new StringBuffer();
 			BufferedReader in = new BufferedReader(new FileReader(aFile));
 			HashMap<String, Node> nodeMap = new HashMap<>();
 			String line;
 		
-	
 			while((line = in.readLine()) != null)
 			{
 				String[] data = line.split(", ");
@@ -137,6 +138,11 @@ public class TreeModel extends Model {
 					branchesDataFlag = 1;
 				}else
 				{
+					if(treesDataFlag == 1)
+					{
+						aBuffer.append(data[0]);
+						aBuffer.append(System.getProperty("line.separator"));
+					}
 					if(nodesDataFlag == 1)
 					{
 						Node aNode = new Node(data[1]);
@@ -151,11 +157,11 @@ public class TreeModel extends Model {
 					}
 				}
 			}	
+			this.forest.setForm(aBuffer.toString());
 		}catch(Exception e)
 		{
 			e.printStackTrace();
 		}
-
   		return;
 	}
 
@@ -165,7 +171,7 @@ public class TreeModel extends Model {
      */
 	public Node root()
 	{
-		return null;
+		return this.forest.rootNodes().get(0);
 	}
 	
 	/**
