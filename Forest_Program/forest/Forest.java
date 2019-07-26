@@ -40,13 +40,9 @@ public class Forest extends Object {
 	private Rectangle bounds = new Rectangle();
 
 	/**
-	 * [getNodes description]
-	 * @return [description]
+	 * 木構造をString型で記憶するフィールドです。
 	 */
-	// public ArrayList<Node> getNodes()
-	// {
-	// 	return this.nodes;
-	// }
+	private String forestForm;
 
 	/**
 	 * ブランチ（枝）を追加するメソッドです。
@@ -54,6 +50,7 @@ public class Forest extends Object {
 	 */
 	public void addBranch(Branch aBranch) {
 		branches.add(aBranch);
+		return;
 	}
 
 	/**
@@ -62,16 +59,20 @@ public class Forest extends Object {
 	 */
 	public void addNode(Node aNode) {
 		nodes.add(aNode);
+		return;
 	}
 
 	/**
-	 * 樹状整列するトップ（一番上位）のメソッドです。
+	 * 樹状整列するトップ（一番上位）のメソッドです。アニメーション無しで樹状整列させます。
 	 */
 	public void arrange() {
-		this.initNodeStatus();
-		Consumer<Node> aConsumer = (Node aNode) -> { this.arrange(aNode, new Point(aNode.getLocation().x+this.bounds.x, aNode.getLocation().y+this.bounds.y), null); };
+		this.initSet();
+		Consumer<Node> aConsumer = (Node aNode) -> { 
+			if(Objects.equals(aNode, this.rootNodesList.get(0))) this.arrange(aNode, new Point(this.bounds.x+Constants.Margin.x, this.bounds.y+this.bounds.height+aNode.getBounds().height-Constants.Margin.y-Constants.Margin.y), null);
+			else this.arrange(aNode, new Point(this.bounds.x+Constants.Margin.x, this.bounds.y+this.bounds.height+aNode.getBounds().height-Constants.Margin.y-Constants.Margin.y+Constants.Interval.y), null); 
+		};
 		this.rootNodesList.forEach( aConsumer );
-
+		return;
 	}
 
 	/**
@@ -81,8 +82,12 @@ public class Forest extends Object {
 	public void arrange(TreeModel aModel) {
 		this.bounds.setSize(0, 0);
 		this.rootNodes();
-		Consumer<Node> aConsumer = (Node aNode) -> { this.arrange(aNode, new Point(this.bounds.x, this.bounds.y+this.bounds.height+aNode.getBounds().height+Constants.Interval.y), aModel); };
+		Consumer<Node> aConsumer = (Node aNode) -> { 
+			if(Objects.equals(aNode, this.rootNodesList.get(0))) this.arrange(aNode, new Point(this.bounds.x+Constants.Margin.x, this.bounds.y+this.bounds.height+aNode.getBounds().height-Constants.Margin.y-Constants.Margin.y), aModel);
+			else this.arrange(aNode, new Point(this.bounds.x+Constants.Margin.x, this.bounds.y+this.bounds.height+aNode.getBounds().height-Constants.Margin.y-Constants.Margin.y+Constants.Interval.y), aModel); 
+		};
 		rootNodesList.forEach( aConsumer );
+		return;
 	}
 
 	/**
@@ -105,35 +110,26 @@ public class Forest extends Object {
 		if(aModel != null) this.propagate(aModel);
 		
 		// 描画領域の範囲を更新する
-		if(this.bounds.x+this.bounds.width < aNode.getBounds().x+aNode.getBounds().width) this.bounds.setSize(aNode.getBounds().width+aNode.getBounds().x, this.bounds.height);
-		if(this.bounds.y+this.bounds.height < aNode.getBounds().y+aNode.getBounds().height) this.bounds.setSize(this.bounds.width, aNode.getBounds().y+aNode.getBounds().height);
+		if(this.bounds.x+this.bounds.width < aNode.getBounds().x+aNode.getBounds().width) this.bounds.setSize(aNode.getBounds().width+aNode.getBounds().x-this.bounds.x, this.bounds.height);
+		if(this.bounds.y+this.bounds.height < aNode.getBounds().y+aNode.getBounds().height) this.bounds.setSize(this.bounds.width, aNode.getBounds().y+aNode.getBounds().height-this.bounds.y);
 
 		// サブノードとその座標を引数として渡して再帰呼び出しする。
 		Integer anIndex = 0;
 		for(Node aSubNode : subNodes)
 		{
-			if(!Objects.equals(aSubNode.getStatus(), Constants.Visited) && anIndex == 0 && aModel != null)
+			if(!Objects.equals(aSubNode.getStatus(), Constants.Visited) && anIndex == 0)
 			{
 				this.arrange(aSubNode, new Point(aNode.getBounds().x+aNode.getBounds().width+Constants.Interval.x+Constants.Margin.x, this.bounds.y+this.bounds.height-Constants.Margin.y-Constants.Margin.y), aModel);	
-			}else if(!Objects.equals(aSubNode.getStatus(), Constants.Visited) && aModel != null)
+			}else if(!Objects.equals(aSubNode.getStatus(), Constants.Visited))
 			{
-				this.arrange(aSubNode, new Point(aNode.getBounds().x+aNode.getBounds().width+Constants.Interval.x+Constants.Margin.x, this.bounds.y+this.bounds.height+aNode.getBounds().height+Constants.Interval.y), aModel);
-			}else if(aModel == null && !Objects.equals(aSubNode.getStatus(), Constants.Visited))
-			{
-				this.arrange(aSubNode, new Point(aSubNode.getLocation().x+this.bounds.x, aSubNode.getLocation().y+this.bounds.y), aModel);		
+				this.arrange(aSubNode, new Point(aNode.getBounds().x+aNode.getBounds().width+Constants.Interval.x+Constants.Margin.x, this.bounds.y+this.bounds.height+aNode.getBounds().height-Constants.Margin.y-Constants.Margin.y+Constants.Interval.y), aModel);
 			}
 			anIndex++;
 
 		}
 		
 		// サブノード群の高さの半分の高さにノードの位置をセットする
-		if(aModel != null)
-		{
-			aNode.setLocation(new Point(aPoint.x, aNode.getBounds().y+((this.bounds.y+this.bounds.height-aNode.getBounds().y)/2)+(aNode.getBounds().height/2)-Constants.Margin.y));
-		}else
-		{
-			aNode.setLocation(new Point(aPoint.x+this.bounds.x, aPoint.y+this.bounds.y));
-		}
+		aNode.setLocation(new Point(aPoint.x, aNode.getBounds().y+((this.bounds.y+this.bounds.height-aNode.getBounds().y)/2)+(aNode.getBounds().height/2)-Constants.Margin.y));
 		
 		// モデルが変更されたことを伝える
 		if(aModel != null) this.propagate(aModel);
@@ -141,7 +137,7 @@ public class Forest extends Object {
 		// ノードのステータスを訪問済みにセットする
 		aNode.setStatus(Constants.Visited);
 
-		return new Point(this.bounds.x, this.bounds.y);
+		return new Point(this.bounds.width, this.bounds.height);
 	}
 	
 	/**
@@ -161,7 +157,8 @@ public class Forest extends Object {
 	{
 		nodes.forEach(aNode -> aNode.draw(aGraphics));
 		branches.forEach(aBranch -> aBranch.draw(aGraphics));
-		aGraphics.drawRect(this.bounds.x, this.bounds.y, this.bounds.width, this.bounds.height);
+		// aGraphics.drawRect(this.bounds.x, this.bounds.y, this.bounds.width, this.bounds.height);
+		return;
 	}
 
 	/**
@@ -169,7 +166,8 @@ public class Forest extends Object {
 	 */
 	public void flushBounds() 
 	{
-		bounds = new Rectangle();
+		this.bounds = new Rectangle();
+		return;
 	}
 
 	/**
@@ -178,7 +176,6 @@ public class Forest extends Object {
 	 */
 	protected void propagate(TreeModel aModel) 
 	{
-		
 		try
 		{
 			Thread.sleep(Constants.SleepTick);
@@ -187,7 +184,7 @@ public class Forest extends Object {
 			System.out.println(e);
 		}
 		aModel.changed();
-		
+		return;
 	}
 
 	/**
@@ -196,16 +193,19 @@ public class Forest extends Object {
 	 */
 	public void moveBounds(Point aPoint)
 	{
-		this.bounds.setLocation(aPoint);
+		this.bounds.setLocation(this.bounds.x+aPoint.x, this.bounds.y+aPoint.y);
+		return;
 	}
 
 	/**
-	 * ノードのステータスを初期化するメソッドです。
+	 * ノードのステータスと描画領域の矩形の大きさを初期化メソッドです。
 	 */
-	protected void initNodeStatus()
+	protected void initSet()
 	{
+		this.bounds.setSize(0, 0);
 		Consumer<Node> aConsumer = (Node aNode) -> { aNode.setStatus(Constants.UnVisited); };
 		this.nodes.forEach(aConsumer);
+		return;
 	}
 
 	/**
@@ -219,7 +219,7 @@ public class Forest extends Object {
 			Integer anIndex = 0;
 			for(Node aNode : nodes)
 			{
-				anIndex = 0 ;
+				anIndex = 0;
 				for(Branch aBranch : branches)
 				{
 					if(Objects.equals(aNode.getName(), aBranch.end().getName())) break;
@@ -274,12 +274,24 @@ public class Forest extends Object {
 	public ArrayList<Node> superNodes(Node aNode) 
 	{
 		ArrayList<Node> superNodesList = new ArrayList<>();
-		Branch[] branchesToSubNodes = (Branch[])(branches.stream().filter( aBranch -> Objects.equals(aBranch.end(), aNode) ).toArray());
-		for(Branch aBranch : branchesToSubNodes)
+		for(Branch aBranch : branches)
 		{
-			superNodesList.add(aBranch.start());
+			if(Objects.equals(aBranch.end(), aNode))
+			{
+				superNodesList.add(aBranch.start());
+			}
 		}
 		return superNodesList;
+	}
+
+	/**
+	 * 木構造をセットするメソッドです。
+	 * @param form テキストファイルから読み込んだ木構造の文字列
+	 */
+	public void setForm(String form)
+	{
+		this.forestForm = form;
+		return;
 	}
 
 	/**
@@ -287,7 +299,12 @@ public class Forest extends Object {
 	 * @return 自分自身を表す文字列
 	 */
 	public String toString() {
-		return null;
+		StringBuffer aBuffer = new StringBuffer();
+		Class<?> aClass = this.getClass();
+		aBuffer.append(aClass.getName());
+		aBuffer.append(System.getProperty("line.separator"));
+		aBuffer.append(this.forestForm);
+		return aBuffer.toString();
 	}
 
 	/**
