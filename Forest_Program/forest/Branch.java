@@ -9,11 +9,13 @@ public class Branch extends Object {
 
 	/**
 	 * ブランチ（枝）の始点となるノードを記憶するフィールドです。
+	 * 良好（2019/7/29）
 	 */
 	private Node start;
 
 	/**
 	 * ブランチ（枝）の終点となるノードを記憶するフィールドです。
+	 * 良好（2019/7/29）
 	 */
 	private Node end;
 
@@ -21,6 +23,7 @@ public class Branch extends Object {
 	 * インスタンスを生成する。
 	 * @param from 元のノード(親)
 	 * @param to 新たなノード(子)
+	 * 良好（2019/7/29）
 	 */
 	public Branch(Node from, Node to) {
 		this.start = from;
@@ -31,6 +34,7 @@ public class Branch extends Object {
 	/**
 	 * 描写メソッド
 	 * @param aGraphics 描画引数
+	 * 良好（2019/7/29）
 	 */
 	public void draw(Graphics aGraphics) {
 		Integer startX = this.start.getBounds().x + this.start.getBounds().width;
@@ -44,6 +48,7 @@ public class Branch extends Object {
 	/**
 	 * 元ノードを応答
 	 * @return 元ノード
+	 * 良好（2019/7/29）
 	 */
 	public Node start() {
 		return this.start;
@@ -52,6 +57,7 @@ public class Branch extends Object {
 	/**
 	 * 新たなノード
 	 * @return 新たなノード
+	 * 良好（2019/7/29）
 	 */
 	public Node end() {
 		return this.end;
@@ -60,6 +66,7 @@ public class Branch extends Object {
 	/**
 	 * 自分自身を文字列に変換するメソッドです。
 	 * @return 自分自身を表す文字列
+	 * 良好（2019/7/29）
 	 */
 	public String toString() {
 		StringBuffer aBuffer = new StringBuffer();
