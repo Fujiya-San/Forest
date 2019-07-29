@@ -16,21 +16,25 @@ public class TreeController extends Controller
 
 	/**
 	 * 情報を握っているTreeModelのインスタンスを束縛する。
+	 * 良好（2019/7/29）
 	 */
 	protected TreeModel model;
 
 	/**
 	 * 表示を司るTreeViewのインスタンスを束縛する。
+	 * 良好（2019/7/29）
 	 */
 	protected TreeView view;
 
 	/**
 	 * 以前にマウスのボタンが押下された場所をPointのインスタンスとして束縛する。
+	 * 良好（2019/7/29）
 	 */
 	private Point changePlace;
 
 	/**
 	 * 現在にマウスのボタンが押下された場所をPointのインスタンスとして束縛する。
+	 * 良好（2019/7/29）
 	 */
 	private Point now;
 
@@ -66,6 +70,7 @@ public class TreeController extends Controller
 	 * そして、その差分だけビューに対してスクロールを依頼し、その後にビューの再描画を依頼する。
 	 * 最後にインスタンス変数nowをインスタンス変数changePlaceに更新する。
 	 * @param aMouseEvent マウスイベント
+	 * 良好（2019/7/29）
 	 */
 	public void mouseDragged(MouseEvent aMouseEvent)
 	{
@@ -91,6 +96,7 @@ public class TreeController extends Controller
 	 * 指定されたビューをインスタンス変数viewに設定し、
 	 * ビューのマウスのリスナおよびモーションリスナそしてホイールリスナをこのコントローラにする。
 	 * @param aView このコントローラのビュー
+	 * 良好（2019/7/29）
 	 */
 	public void setView(TreeView aView)
 	{
