@@ -157,13 +157,16 @@ public class TreeModel extends Model {
 					}
 					if(nodesDataFlag)
 					{
-						try {
+						try 
+						{
 			                Integer.parseInt(data[0]);
-			            } catch (NumberFormatException e) {
+			            } 
+			            catch (NumberFormatException e) 
+			            {
 			            	e.printStackTrace();
 			                isNumberFlag = false;
 			            }
-						if(isNumberFlag)
+						if(isNumberFlag && data.length > 1)
 						{
 							Node aNode = new Node(data[1]);
 							aNode.setLocation(new Point(0, Integer.valueOf(data[0])*Constants.DefaultFont.getSize()));
@@ -175,14 +178,16 @@ public class TreeModel extends Model {
 					}
 					if(branchesDataFlag)
 					{
-						try {
+						try 
+						{
 			                Integer.parseInt(data[0]);
-			                Integer.parseInt(data[1]);
-			            } catch (NumberFormatException e) {
+			                if(data.length > 1) Integer.parseInt(data[1]);
+			            } catch (NumberFormatException e) 
+			            {
 			            	e.printStackTrace();
 			                isNumberFlag = false;
 			            }
-			            if(isNumberFlag)
+			            if(isNumberFlag && data.length > 1)
 			            {
 			            	if(nodeMap.get(data[0]) != null && nodeMap.get(data[1]) != null) this.forest.addBranch(new Branch(nodeMap.get(data[0]), nodeMap.get(data[1])));
 			            } 
