@@ -37,6 +37,7 @@ public class TreeController extends Controller
 	/**
 	 * インスタンスを生成して応答する。
 	 * すべてのインスタンス変数（model, view, changePlace, now）をnull化する。
+	 * 良好(7月29日)
 	 */
 	public TreeController()
 	{
@@ -51,6 +52,7 @@ public class TreeController extends Controller
 	/**
 	 * 指定されたモデルをインスタンス変数modelに設定する。
 	 * @param aModel このコントローラのモデル
+	 * 良好 (7月29日)
 	 */
 	public void setModel(TreeModel aModel)
 	{
@@ -70,7 +72,7 @@ public class TreeController extends Controller
 		ArrayList<Node> rootNodes = this.model.roots();
 		for(Node aNode : rootNodes)
 		{
-			if(!(Objects.equals(aNode.getStatus(), Constants.Visited))) return;	
+			if(!(Objects.equals(aNode.getStatus(), Constants.Visited))) return;
 		}
 		Cursor aCursor = Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR);
 		Component aComponent = (Component)aMouseEvent.getSource();
@@ -103,6 +105,7 @@ public class TreeController extends Controller
 	 * マウスカーサの形状を十字に変化させ、指定されたマウスイベントからマウスカーサの位置を獲得して、
 	 * インスタンス変数nowに設定する共にインスタンス変数changePlaceをインスタンス変数nowに更新する。
 	 * @param aMouseEvent マウスイベント
+	 * 良好　(7月29日)
 	 */
 	public void mousePressed(MouseEvent aMouseEvent)
 	{
@@ -117,6 +120,7 @@ public class TreeController extends Controller
 	/**
 	 * マウスクリック判定を行うメソッド
 	 * @param aMouseEvent マウスのクリック情報
+	 * 良好 (7月29日)
 	 */
 	public void mouseClicked(MouseEvent aMouseEvent)
 	{
