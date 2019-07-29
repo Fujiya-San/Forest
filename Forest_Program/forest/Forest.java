@@ -71,12 +71,13 @@ public class Forest extends Object {
 
 	/**
 	 * 樹状整列するトップ（一番上位）のメソッドです。アニメーション無しで樹状整列させます。
+	 * 良好（2019/7/29）
 	 */
 	public void arrange() {
 		this.initSet();
 		Consumer<Node> aConsumer = (Node aNode) -> { 
 			if(Objects.equals(aNode, this.rootNodesList.get(0))) this.arrange(aNode, new Point(this.bounds.x+Constants.Margin.x, this.bounds.y+this.bounds.height+aNode.getBounds().height-Constants.Margin.y-Constants.Margin.y), null);
-			else this.arrange(aNode, new Point(this.bounds.x+Constants.Margin.x, this.bounds.y+this.bounds.height+aNode.getBounds().height-Constants.Margin.y-Constants.Margin.y+Constants.Interval.y), null); 
+			else System.out.println(this.arrange(aNode, new Point(this.bounds.x+Constants.Margin.x, this.bounds.y+this.bounds.height+aNode.getBounds().height-Constants.Margin.y-Constants.Margin.y+Constants.Interval.y), null)); 
 		};
 		this.rootNodesList.forEach( aConsumer );
 		return;
@@ -85,13 +86,14 @@ public class Forest extends Object {
 	/**
 	 * 樹状整列するセカンドレベル（二番階層）のメソッドです。
 	 * @param aModel モデル
+	 * 良好（2019/7/29）
 	 */
 	public void arrange(TreeModel aModel) {
 		this.bounds.setSize(0, 0);
 		this.rootNodes();
 		Consumer<Node> aConsumer = (Node aNode) -> { 
 			if(Objects.equals(aNode, this.rootNodesList.get(0))) this.arrange(aNode, new Point(this.bounds.x+Constants.Margin.x, this.bounds.y+this.bounds.height+aNode.getBounds().height-Constants.Margin.y-Constants.Margin.y), aModel);
-			else this.arrange(aNode, new Point(this.bounds.x+Constants.Margin.x, this.bounds.y+this.bounds.height+aNode.getBounds().height-Constants.Margin.y-Constants.Margin.y+Constants.Interval.y), aModel); 
+			else System.out.println(this.arrange(aNode, new Point(this.bounds.x+Constants.Margin.x, this.bounds.y+this.bounds.height+aNode.getBounds().height-Constants.Margin.y-Constants.Margin.y+Constants.Interval.y), aModel)); 
 		};
 		rootNodesList.forEach( aConsumer );
 		return;
@@ -103,6 +105,7 @@ public class Forest extends Object {
 	 * @param  aPoint ノードの位置（座標）
 	 * @param  aModel モデル（nullのときはアニメーションを行わない）
 	 * @return        樹状整列に必要だった大きさ（幅と高さ）
+	 * 良好（2019/7/29）
 	 */
 	protected Point arrange(Node aNode, Point aPoint,  TreeModel aModel) 
 	{
@@ -150,6 +153,7 @@ public class Forest extends Object {
 	/**
 	 * フォレスト（木・林・森・亜格子状の森）の領域（矩形）を応答するメソッドです。
 	 * @return フォレスト領域（矩形）
+	 * 良好（2019/7/29）
 	 */
 	public Rectangle bounds() 
 	{
@@ -171,6 +175,7 @@ public class Forest extends Object {
 
 	/**
 	 * フォレスト（木・林・森・亜格子状の森）の領域（矩形）を水に流す（チャラにする）メソッドです。
+	 * 良好（2019/7/29）
 	 */
 	public void flushBounds() 
 	{
@@ -181,6 +186,8 @@ public class Forest extends Object {
 	/**
 	 * チックタックの間、スリープし、モデルが変化した、と騒ぐ（広める：放送する）メソッドです。
 	 * @param aModel モデル
+	 * 修正（2019/7/29）
+	 * 良好（2019/7/29）
 	 */
 	protected void propagate(TreeModel aModel) 
 	{
@@ -189,7 +196,7 @@ public class Forest extends Object {
 			Thread.sleep(Constants.SleepTick);
 		}catch(InterruptedException e)
 		{
-			System.out.println(e);
+			e.printStackTrace();
 		}
 		aModel.changed();
 		return;
@@ -283,6 +290,7 @@ public class Forest extends Object {
 	 * 引数で指定されたノードのサブノード群を応答するメソッドです。
 	 * @param  aNode ノード
 	 * @return       サブノード群
+	 * 良好（2019/7/29）
 	 */
 	public ArrayList<Node> superNodes(Node aNode) 
 	{
