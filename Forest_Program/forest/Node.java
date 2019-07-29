@@ -120,6 +120,7 @@ public class Node extends Component
 	/**
 	 * ノード（節）の大きさを設定するメソッドです。
 	 * @param aPoint ノードの大きさ（幅と高さ）
+	 * 良好（2019/7/29）
 	 */
 	public void setExtent(Point aPoint)
 	{
@@ -131,6 +132,7 @@ public class Node extends Component
 	/**
 	 * ノード（節）の位置を設定するメソッドです。
 	 * @param aPoint ノードの位置（座標）
+	 * 良好（2019/7/29）
 	 */
 	public void setLocation(Point aPoint)
 	{
@@ -177,6 +179,7 @@ public class Node extends Component
 	 * 文字列の幅を応答するメソッドです。
 	 * @param  string 文字列
 	 * @return        文字列の幅
+	 * 良好（2019/7/29）
 	 */
 	protected int stringWidth(String string)
 	{
