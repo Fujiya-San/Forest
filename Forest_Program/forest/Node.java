@@ -14,32 +14,38 @@ public class Node extends Component
 {
 	/**
 	 * ノード名：ラベル文字列を記憶するフィールドです。
+	 * 良好 (7月29日)
 	 */
 	private String name;
-	
+
 	/**
 	 * ノードの場所（位置：座標）を記憶するフィールドです。
+	 * 良好 (7月29日)
 	 */
 	private Point location;
 
 	/**
 	 * ノードの大きさ（幅と高さ）を記憶するフィールドです。
+	 * 良好 (7月29日)
 	 */
 	private Point extent;
 
 	/**
 	 * 樹状整列する際のノードの状態を記憶するフィールドです。
+	 * 良好 (7月29日)
 	 */
 	private Integer status;
 
 	/**
 	 * ノードを囲む矩形を記憶するフィールドです。
+	 * 良好 (7月29日)
 	 */
 	private Rectangle bounds;
 
 	/**
 	 * このクラスのインスタンスを生成するコンストラクタです。
 	 * @param  aString ノード名：ラベル文字列
+	 * 良好 (7月29日)
 	 */
 	public Node(String aString)
 	{
@@ -52,6 +58,7 @@ public class Node extends Component
 	/**
 	 * ノード（節）を描画するメソッドです。
 	 * @param aGraphics グラフィクス（描画コンテクスト）
+	 * 良好　(7月２９日)
 	 */
 	public void draw(Graphics aGraphics)
 	{
@@ -63,6 +70,7 @@ public class Node extends Component
 	/**
 	 * ノード（節）の描画領域を応答するメソッドです。
 	 * @return ノード（節）の描画領域（Rectangleのインスタンス）
+	 * 良好 (7月29日)
 	 */
 	public Rectangle getBounds()
 	{
@@ -72,6 +80,7 @@ public class Node extends Component
 	/**
 	 * ノード（節）の大きさを応答するメソッドです。
 	 * @return ノード（節）の大きさ（幅と高さ）
+	 * 良好 (7月29日)
 	 */
 	public Point getExtent()
 	{
@@ -81,6 +90,7 @@ public class Node extends Component
 	/**
 	 * ノード（節）の位置を応答するメソッドです。
 	 * @return ノード（節）の位置（座標）
+	 * 良好 (7月29日)
 	 */
 	public Point getLocation()
 	{
@@ -90,6 +100,7 @@ public class Node extends Component
 	/**
 	 * ノード（節）の名前を応答するメソッドです。
 	 * @return ノード名（ラベル文字列）
+	 * 良好　(7月29日)
 	 */
 	public String getName()
 	{
@@ -99,6 +110,7 @@ public class Node extends Component
 	/**
 	 * ノード（節）の状態を応答するメソッドです。
 	 * @return ノードの状態
+	 * 良好 (7月29日)
 	 */
 	public Integer getStatus()
 	{
@@ -130,6 +142,7 @@ public class Node extends Component
 	/**
 	 * ノード（節）の名前を設定するメソッドです。
 	 * @param aString ノードの名前（ラベル）
+	 * 良好 (7月29日)
 	 */
 	public void setName(String aString)
 	{
@@ -140,6 +153,7 @@ public class Node extends Component
 	/**
 	 * ノード（節）の状態を設定するメソッドです。
 	 * @param anInteger ノードの状態
+	 * 良好 (7月29日)
 	 */
 	public void setStatus(Integer anInteger)
 	{
@@ -151,6 +165,7 @@ public class Node extends Component
 	 * 文字列の高さを応答するメソッドです。
 	 * @param  string 文字列
 	 * @return        文字列の高さ
+	 * 良好 (7月29日)
 	 */
 	protected int stringHeight(String string)
 	{
@@ -172,6 +187,7 @@ public class Node extends Component
 	/**
 	 * 自分自身を文字列に変換するメソッドです。
 	 * @return 自分自身を表す文字列
+	 * 良好 (7月29日)
 	 */
 	public String toString()
 	{
