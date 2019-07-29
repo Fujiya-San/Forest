@@ -13,26 +13,29 @@ import java.awt.Point;
 import mvc.Model;
 
 /**
- * 樹状整列におけるMVCのモデル（M）を担うクラスになります。
- */
+* 樹状整列におけるMVCのモデル（M）を担うクラスになります。
+*/
 
 public class TreeModel extends Model {
 
 	/**
-	 * 樹状整列それ自身を記憶しておくフィールドです。
-	 */
+	* 樹状整列それ自身を記憶しておくフィールドです。
+	* 良好 (7月29日)
+	*/
 	private Forest forest;
 
 	/**
-	 * 依存物 TreeViewのインスタンスたちを束縛する。
-	 */
+	* 依存物 TreeViewのインスタンスたちを束縛する。
+	* 良好　(7月29日)
+	*/
 	protected ArrayList<TreeView> dependents;
 
 
 	/**
-	 * このクラスのインスタンスを生成するコンストラクタです。
-	 * @param  aFile 樹状整列データファイル
-	 */
+	* このクラスのインスタンスを生成するコンストラクタです。
+	* @param  aFile 樹状整列データファイル
+	* 良好　(7月29日)
+	*/
 	public TreeModel(File aFile)
 	{
 		super();
@@ -44,9 +47,10 @@ public class TreeModel extends Model {
 
 
 	/**
-	 * 指定されたビューを依存物に設定する
-	 * @param aView このモデルの依存物となるビュー
-	 */
+	* 指定されたビューを依存物に設定する
+	* @param aView このモデルの依存物となるビュー
+	* 良好　(7月29日)
+	*/
 	public void addDependent(TreeView aView)
 	{
 		dependents.add(aView);
@@ -54,38 +58,41 @@ public class TreeModel extends Model {
 	}
 
 
-   /**
+	/**
 	* アニメーションを行うメソッドです。
-    */
+	* 良好 (7月29日)
+	*/
 	public void animate()
-	{	
-	 	this.arrange();
-	 	// System.out.println(this.forest.toString());
-	 	return;
+	{
+		this.arrange();
+		// System.out.println(this.forest.toString());
+		return;
 	}
 
 	/**
-	 * 初期化する。
-	 */
+	* 初期化する。
+	* 良好 (7月29日)
+	*/
 	private void initialize()
 	{
 		dependents = new ArrayList<TreeView>();
 		forest = null;
 		return;
 	}
-	
+
 	/**
-	 * 樹状整列を行うメソッドです。
-	 */
+	* 樹状整列を行うメソッドです。
+	* 良好　(7月29日)
+	*/
 	public void arrange()
 	{
-	    this.forest.arrange(this);
-	    return;
+		this.forest.arrange(this);
+		return;
 	}
 
-    /**
-	 * モデルの内部状態が変化していたので、自分の依存物へupdateのメッセージを送信する。
-	 */
+	/**
+	* モデルの内部状態が変化していたので、自分の依存物へupdateのメッセージを送信する。
+	*/
 	public void changed()
 	{
 		dependents.forEach((TreeView aView) -> { aView.paintComponent(aView.getGraphics());});
@@ -93,18 +100,19 @@ public class TreeModel extends Model {
 	}
 
 	/**
-	 * 樹状整列をそれ自身を応答するメソッドです。
-	 * @return 樹状整列それ自身
-	 */
+	* 樹状整列をそれ自身を応答するメソッドです。
+	* @return 樹状整列それ自身
+	* 良好　(7月29日)
+	*/
 	public Forest forest()
 	{
-    	return this.forest;
+		return this.forest;
 	}
 
 	/**
-	 * 樹状整列をそれ自身を応答するメソッドです。
-	 * @param aFile
-	 */
+	* 樹状整列をそれ自身を応答するメソッドです。
+	* @param aFile
+	*/
 	protected void read(File aFile)
 	{
 		try
@@ -116,7 +124,7 @@ public class TreeModel extends Model {
 			BufferedReader in = new BufferedReader(new FileReader(aFile));
 			HashMap<String, Node> nodeMap = new HashMap<>();
 			String line;
-		
+
 			while((line = in.readLine()) != null)
 			{
 				String[] data = line.split(", ");
@@ -156,28 +164,30 @@ public class TreeModel extends Model {
 						this.forest.addBranch(new Branch(nodeMap.get(data[0]), nodeMap.get(data[1])));
 					}
 				}
-			}	
+			}
 			this.forest.setForm(aBuffer.toString());
 		}catch(Exception e)
 		{
 			e.printStackTrace();
 		}
-  		return;
+		return;
 	}
 
-    /**
-     * 樹状整列の根源(ルート)になるノードを探し出して応答するメソッドです。
-     * @return
-     */
+	/**
+	* 樹状整列の根源(ルート)になるノードを探し出して応答するメソッドです。
+	* @return
+	* 良好　(7月29日)
+	*/
 	public Node root()
 	{
 		return this.forest.rootNodes().get(0);
 	}
-	
+
 	/**
-	 * 樹状整列の根源(ルート)になるノードたちを探し出して応答するメソッドです。
-	 * @return
-	 */
+	* 樹状整列の根源(ルート)になるノードたちを探し出して応答するメソッドです。
+	* @return
+	* 良好　(7月29日)
+	*/
 	public ArrayList<Node> roots() {
 		return this.forest.rootNodes();
 	}
