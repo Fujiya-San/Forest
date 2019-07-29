@@ -21,6 +21,7 @@ public class Example extends Object
 	 * $ java -Dfile.encoding=UTF-8 -Xmx512m -Xss1024k -jar forest.jar resource/data/forest.txt<br>
 	 * $ java -Dfile.encoding=UTF-8 -Xmx512m -Xss1024k -jar forest.jar resource/data/semilattice.txt<br>
 	 * @param arguments 樹状整列データファイルを第1引数とする引数文字列群
+	 * 良好（2019/7/29）
 	 */
 	public static void main(String[] arguments)
 	{

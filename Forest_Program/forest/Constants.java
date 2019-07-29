@@ -59,6 +59,7 @@ public class Constants extends Object {
 
 	/**
 	 * ノード群を深さ優先にたどる際の状態「未定」を表します。
+	 * 良好（2019/7/29）
 	 */
 	public static Integer UnKnown = -1;
 
