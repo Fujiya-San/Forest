@@ -21,32 +21,38 @@ public class Forest extends Object {
 
 	/**
 	 * ノード（節）群（たち）を記憶するフィールドです。
+	 * 良好（2019/7/29）
 	 */
 	private ArrayList<Node> nodes = new ArrayList<>();
 
 	/**
 	 * ルートノードを記憶するフィールドです。
+	 * 良好（2019/7/29）
 	 */
 	private ArrayList<Node> rootNodesList = new ArrayList<>();
 
 	/**
 	 * ブランチ（枝）群（たち）を記憶するフィールドです。
+	 * 良好（2019/7/29）
 	 */
 	private ArrayList<Branch> branches = new ArrayList<>();
 
 	/**
 	 * 樹状整列したフォレスト（森）の領域（矩形）を記憶するフィールドです。
+	 * 良好（2019/7/29）
 	 */
 	private Rectangle bounds = new Rectangle();
 
 	/**
 	 * 木構造をString型で記憶するフィールドです。
+	 * 良好（2019/7/29）
 	 */
 	private String forestForm;
 
 	/**
 	 * ブランチ（枝）を追加するメソッドです。
 	 * @param aBranch ノード（節）
+	 * 良好（2019/7/29）
 	 */
 	public void addBranch(Branch aBranch) {
 		branches.add(aBranch);
@@ -56,6 +62,7 @@ public class Forest extends Object {
 	/**
 	 * ノード（節）を追加するメソッドです。
 	 * @param aNode ノード（節）
+	 * 良好（2019/7/29）
 	 */
 	public void addNode(Node aNode) {
 		nodes.add(aNode);
@@ -152,6 +159,7 @@ public class Forest extends Object {
 	/**
 	 * フォレスト（木・林・森・亜格子状の森）を描画するメソッドです。
 	 * @param aGraphics グラフィクス（描画コンテクスト）
+	 * 良好（2019/7/29）
 	 */
 	public void draw(Graphics aGraphics) 
 	{
@@ -190,6 +198,7 @@ public class Forest extends Object {
 	/**
 	 * スクロールされた際、矩形を移動させるメソッドです。
 	 * @param aPoint X軸とY軸の絶対スクロール量を表す座標
+	 * 良好（2019/7/29）
 	 */
 	public void moveBounds(Point aPoint)
 	{
@@ -199,6 +208,7 @@ public class Forest extends Object {
 
 	/**
 	 * ノードのステータスと描画領域の矩形の大きさを初期化メソッドです。
+	 * 良好（2019/7/29）
 	 */
 	protected void initSet()
 	{
@@ -211,6 +221,7 @@ public class Forest extends Object {
 	/**
 	 * フォレストの根元（ルート）となるノード群を応答するメソッドです。
 	 * @return ルートノード群
+	 * 良好（2019/7/29）
 	 */
 	public ArrayList<Node> rootNodes() 
 	{
@@ -241,6 +252,7 @@ public class Forest extends Object {
 	 * 引数で指定されたノード群をノード名でソート（並び替えを）するメソッドです。
 	 * @param  nodeCollection ノード群
 	 * @return                ソートされたノード群
+	 * 良好（2019/7/29）
 	 */
 	protected ArrayList<Node> sortNodes(ArrayList<Node> nodeCollection) 
 	{
@@ -252,6 +264,7 @@ public class Forest extends Object {
 	 * 引数で指定されたノードのサブノード群を応答するメソッドです。
 	 * @param  aNode ノード
 	 * @return       サブノード群
+	 * 良好（2019/7/29）
 	 */
 	public ArrayList<Node> subNodes(Node aNode)
 	{
@@ -287,6 +300,7 @@ public class Forest extends Object {
 	/**
 	 * 木構造をセットするメソッドです。
 	 * @param form テキストファイルから読み込んだ木構造の文字列
+	 * 良好（2019/7/29）
 	 */
 	public void setForm(String form)
 	{
@@ -297,6 +311,7 @@ public class Forest extends Object {
 	/**
 	 * 自分自身を文字列に変換するメソッドです。
 	 * @return 自分自身を表す文字列
+	 * 良好（2019/7/29）
 	 */
 	public String toString() {
 		StringBuffer aBuffer = new StringBuffer();
@@ -311,6 +326,7 @@ public class Forest extends Object {
 	 * 指定された位置（座標）にノードが存在するかを調べるメソッドです。
 	 * @param  aPoint 位置（モデル座標）
 	 * @return        ノード、もしも見つからなかった場合には、nullを応答します。
+	 * 良好（2019/7/29）
 	 */
 	public Node whichOfNodes(Point aPoint) 
 	{
