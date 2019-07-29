@@ -11,41 +11,49 @@ public class Constants extends Object {
 
 	/**
 	 * 樹状整列データファイル中のタグ「ツリー」を表します。
+	 * 良好（2019/7/29）
 	 */
 	public static String TagOfTrees = "trees:";
 
 	/**
 	 * 樹状整列データファイル中のタグ「ノード」を表します。
+	 * 良好（2019/7/29）
 	 */
 	public static String TagOfNodes = "nodes:";
 
 	/**
 	 * 樹状整列データファイル中のタグ「ブランチ」を表します。
+	 * 良好（2019/7/29）
 	 */
 	public static String TagOfBranches = "branches:";
 
 	/**
 	 * ノードを描く際のラベルの文字色を表します。
+	 * 良好（2019/7/29）
 	 */
 	public static Color ForegroundColor = Color.black;
 
 	/**
 	 * ノードを描く際のラベルの背景色を表します。
+	 * 良好（2019/7/29）
 	 */
 	public static Color BackgroundColor = Color.white;
 
 	/**
 	 * ノードを描く際のラベルのフォントを表します。
+	 * 良好（2019/7/29）
 	 */
 	public static Font DefaultFont = new Font("Serif", Font.PLAIN, 12);
 
 	/**
 	 * ノードにおいてラベルを描く際の枠縁から余裕（マージン）を表します。
+	 * 良好（2019/7/29）
 	 */
 	public static Point Margin = new Point(2,1);
 
 	/**
 	 * ノード群を樹状に整列させる際にノード同士の間隔を表します。
+	 * 良好（2019/7/29）
 	 */
 	public static Point Interval = new Point(25,2);
 
@@ -56,16 +64,19 @@ public class Constants extends Object {
 
 	/**
 	 * ノード群を深さ優先にたどる際の状態「未訪問」を表します。
+	 * 良好（2019/7/29）
 	 */
 	public static Integer UnVisited = 0;
 
 	/**
 	 * ノード群を深さ優先にたどる際の状態「訪問済」を表します。
+	 * 良好（2019/7/29）
 	 */
 	public static Integer Visited = 1;
 
 	/**
 	 * 樹状整列アニメーションのチックタック：時間間隔：スピードを表します。
+	 * 良好（2019/7/29）
 	 */
 	public static Integer SleepTick = 100;
 }
