@@ -92,6 +92,7 @@ public class TreeModel extends Model {
 
 	/**
 	* モデルの内部状態が変化していたので、自分の依存物へupdateのメッセージを送信する。
+	* 良好　(7月29日)
 	*/
 	public void changed()
 	{
@@ -112,14 +113,17 @@ public class TreeModel extends Model {
 	/**
 	* 樹状整列をそれ自身を応答するメソッドです。
 	* @param aFile
+	* 修正　(7月29日)
+	* 良好　(7月29日)
 	*/
 	protected void read(File aFile)
 	{
 		try
 		{
-			Integer treesDataFlag = 0;
-			Integer nodesDataFlag = 0;
-			Integer branchesDataFlag = 0;
+			Boolean treesDataFlag = false;
+			Boolean nodesDataFlag = false;
+			Boolean branchesDataFlag = false;
+			Boolean isNumberFlag = true;
 			StringBuffer aBuffer = new StringBuffer();
 			BufferedReader in = new BufferedReader(new FileReader(aFile));
 			HashMap<String, Node> nodeMap = new HashMap<>();
@@ -131,39 +135,60 @@ public class TreeModel extends Model {
 
 				if(Objects.equals(line, Constants.TagOfTrees))
 				{
-					treesDataFlag = 1;
-					nodesDataFlag = 0;
-					branchesDataFlag = 0;
+					treesDataFlag = true;
+					nodesDataFlag = false;
+					branchesDataFlag = false;
 				}else if(Objects.equals(line, Constants.TagOfNodes))
 				{
-					treesDataFlag = 0;
-					nodesDataFlag = 1;
-					branchesDataFlag = 0;
+					treesDataFlag = false;
+					nodesDataFlag = true;
+					branchesDataFlag = false;
 				}else if(Objects.equals(line, Constants.TagOfBranches))
 				{
-					treesDataFlag = 0;
-					nodesDataFlag = 0;
-					branchesDataFlag = 1;
+					treesDataFlag = false;
+					nodesDataFlag = false;
+					branchesDataFlag = true;
 				}else
 				{
-					if(treesDataFlag == 1)
+					if(treesDataFlag)
 					{
 						aBuffer.append(data[0]);
 						aBuffer.append(System.getProperty("line.separator"));
 					}
-					if(nodesDataFlag == 1)
+					if(nodesDataFlag)
 					{
-						Node aNode = new Node(data[1]);
-						aNode.setLocation(new Point(0, Integer.valueOf(data[0])*Constants.DefaultFont.getSize()));
-						aNode.setStatus(Constants.UnVisited);
-						nodeMap.put(data[0], aNode);
-						this.forest.addNode(aNode);
+						try {
+			                Integer.parseInt(data[0]);
+			            } catch (NumberFormatException e) {
+			            	e.printStackTrace();
+			                isNumberFlag = false;
+			            }
+						if(isNumberFlag)
+						{
+							Node aNode = new Node(data[1]);
+							aNode.setLocation(new Point(0, Integer.valueOf(data[0])*Constants.DefaultFont.getSize()));
+							aNode.setStatus(Constants.UnVisited);
+							nodeMap.put(data[0], aNode);
+							this.forest.addNode(aNode);
+						}
+						
 					}
-					if(branchesDataFlag == 1)
+					if(branchesDataFlag)
 					{
-						this.forest.addBranch(new Branch(nodeMap.get(data[0]), nodeMap.get(data[1])));
+						try {
+			                Integer.parseInt(data[0]);
+			                Integer.parseInt(data[1]);
+			            } catch (NumberFormatException e) {
+			            	e.printStackTrace();
+			                isNumberFlag = false;
+			            }
+			            if(isNumberFlag)
+			            {
+			            	if(nodeMap.get(data[0]) != null && nodeMap.get(data[1]) != null) this.forest.addBranch(new Branch(nodeMap.get(data[0]), nodeMap.get(data[1])));
+			            } 
 					}
 				}
+				isNumberFlag = true;
 			}
 			this.forest.setForm(aBuffer.toString());
 		}catch(Exception e)
