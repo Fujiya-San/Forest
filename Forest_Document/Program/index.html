@@ -249,9 +249,240 @@ th {
 <hr>
 <h2>ソフトウェア工学II「樹状整列」プログラム</h2>
 <div class="belt">
-<h3><a name="KanseiSaseteKudasai">完成させてください</a></h3>
+<h3><a name="KanseiSaseteKudasai">プログラムのソースコード</a></h3>
 </div>
+<div >
+    <h3><pre class = "belt-yellow">TreeView</pre></h3>
+</div>
+<pre>
+package forest;
+
+import java.awt.Graphics;
+import java.awt.Point;
+import mvc.View;
+
+/**
+ * 樹状整列におけるMVCのビュー（V）を担うクラスになります。
+ */
+@SuppressWarnings("serial")
+public class TreeView extends View
+{
+
+	/**
+	 * 情報を握っているTreeModelのインスタンスを束縛する。
+	 * 良好 (7月29日)
+	 */
+	protected TreeModel model;
+
+	/**
+	 * 制御を司るTreeControllerのインスタンスを束縛する。
+	 * 良好 (7月29日)
+	 */
+	protected TreeController controller;
+
+	/**
+	 * このクラスのインスタンスを生成するコンストラクタです。
+	 * @param  aModel モデル（Modelのインスタンス）
+	 * 良好 (7月29日)
+	 */
+	public TreeView(TreeModel aModel)
+	{
+		super(aModel);
+		model = aModel;
+		model.addDependent(this);
+		controller = new TreeController();
+		controller.setModel(model);
+		controller.setView(this);
+		return;
+	}
+
+	/**
+	 * このパネル（ビュー）の描画が必要になったときに動作するメソッドです。
+	 * @param aGraphics グラフィクス（描画コンテクスト）
+	 * 良好 (7月29日)
+	 */
+	public void paintComponent(Graphics aGraphics)
+	{
+		this.update();
+		this.model.forest().draw(aGraphics);
+		return;
+	}
+
+	/**
+	 * スクロール量を指定された座標分だけ相対スクロールする。
+	 * @param aPoint X軸とY軸のスクロール量を表す座標
+	 * 良好 (7月29日)
+	 */
+	public void scrollBy2(Point aPoint)
+	{
+
+		int x = aPoint.x;
+		int y = aPoint.y;
+		model.forest().moveBounds(new Point(x, y));
+		this.model.forest().arrange();
+		return;
+	}
+
+	/**
+	 * 指定された位置（座標）にノードが存在するかを調べるメソッドです。
+	 * @param  aPoint 位置（ビュー座標）
+	 * @return ノード、もしも見つからなかった場合には、nullを応答します。
+	 * 良好 (7月29日)
+	 */
+	public Node whichOfNodes(Point aPoint)
+	{
+		return model.forest().whichOfNodes(aPoint);
+	}
+
+}
+</pre>
+<div >
+    <h3><pre class = "belt-yellow">TreeController</pre></h3>
+</div>
+<pre>
+package forest;
+
+import java.awt.event.MouseEvent;
+import mvc.Controller;
+import java.awt.Point;
+import java.awt.Cursor;
+import java.awt.Component;
+import java.util.ArrayList;
+import java.util.Objects;
+
+/**
+ * 樹状整列におけるMVCのコントローラ（C）を担うクラスになります。
+ */
+public class TreeController extends Controller
+{
+
+	/**
+	 * 情報を握っているTreeModelのインスタンスを束縛する。
+	 * 良好　(7月29日)
+	 */
+	protected TreeModel model;
+
+	/**
+	 * 表示を司るTreeViewのインスタンスを束縛する。
+	 * 良好 (7月29日)
+	 */
+	protected TreeView view;
+
+	/**
+	 * 以前にマウスのボタンが押下された場所をPointのインスタンスとして束縛する。
+	 * 良好 (7月29日)
+	 */
+	private Point changePlace;
+
+	/**
+	 * 現在にマウスのボタンが押下された場所をPointのインスタンスとして束縛する。
+	 * 良好 (7月29日)
+	 */
+	private Point now;
+
+	/**
+	 * インスタンスを生成して応答する。
+	 * すべてのインスタンス変数（model, view, changePlace, now）をnull化する。
+	 * 良好(7月29日)
+	 */
+	public TreeController()
+	{
+		super();
+		model = null;
+		view = null;
+		changePlace = null;
+		now = null;
+		return;
+	}
+
+	/**
+	 * 指定されたモデルをインスタンス変数modelに設定する。
+	 * @param aModel このコントローラのモデル
+	 * 良好 (7月29日)
+	 */
+	public void setModel(TreeModel aModel)
+	{
+		model = aModel;
+		return;
+	}
+
+	/**
+	 * マウスカーサの形状を移動の形に変化させ、指定されたマウスイベントからマウスカーサの位置を獲得して、
+	 * インスタンス変数changePlaceに設定すると共に、以前のマウスカーサの位置からの差分を計算する。
+	 * そして、その差分だけビューに対してスクロールを依頼し、その後にビューの再描画を依頼する。
+	 * 最後にインスタンス変数nowをインスタンス変数changePlaceに更新する。
+	 * @param aMouseEvent マウスイベント
+	 * 良好　(7月29日)
+	 */
+	public void mouseDragged(MouseEvent aMouseEvent)
+	{
+		ArrayList<Node> rootNodes = this.model.roots();
+		for(Node aNode : rootNodes)
+		{
+			if(!(Objects.equals(aNode.getStatus(), Constants.Visited))) return;
+		}
+		Cursor aCursor = Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR);
+		Component aComponent = (Component)aMouseEvent.getSource();
+		aComponent.setCursor(aCursor);
+		now = aMouseEvent.getPoint();
+		int x = now.x - changePlace.x;
+		int y = now.y - changePlace.y;
+		Point point = new Point(x, y);
+		view.scrollBy2(point);
+		view.update();
+		changePlace = now;
+		return;
+	}
+
+	/**
+	 * 指定されたビューをインスタンス変数viewに設定し、
+	 * ビューのマウスのリスナおよびモーションリスナそしてホイールリスナをこのコントローラにする。
+	 * @param aView このコントローラのビュー
+	 * 良好　(7月29日)
+	 */
+	public void setView(TreeView aView)
+	{
+		view = aView;
+		view.addMouseListener(this);
+		view.addMouseMotionListener(this);
+		view.addMouseWheelListener(this);
+		return;
+	}
+
+	/**
+	 * マウスカーサの形状を十字に変化させ、指定されたマウスイベントからマウスカーサの位置を獲得して、
+	 * インスタンス変数nowに設定する共にインスタンス変数changePlaceをインスタンス変数nowに更新する。
+	 * @param aMouseEvent マウスイベント
+	 * 良好　(7月29日)
+	 */
+	public void mousePressed(MouseEvent aMouseEvent)
+	{
+		Cursor aCursor = Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR);
+		Component aComponent = (Component)aMouseEvent.getSource();
+		aComponent.setCursor(aCursor);
+		now = aMouseEvent.getPoint();
+		changePlace = now;
+		return;
+	}
+
+	/**
+	 * マウスクリック判定を行うメソッド
+	 * @param aMouseEvent マウスのクリック情報
+	 * 良好 (7月29日)
+	 */
+	public void mouseClicked(MouseEvent aMouseEvent)
+	{
+		Point aPoint = aMouseEvent.getPoint();
+		Node aNode = view.whichOfNodes(aPoint);
+		if(aNode != null)
+		{
+			System.out.printf("%s%n", aNode.getName());
+		}
+		return;
+	}
+}
+</pre>
 <hr>
-<div class="right-small">Copyright 20xx Project xx, Updated: 2017/03/13 (Created: 2009/11/11)</div>
+<div class="right-small">Copyright 20xx Project xx, Updated: 2019/07/29 (Created: 2009/11/11)</div>
 </body>
 </html>
