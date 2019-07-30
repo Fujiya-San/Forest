@@ -46,7 +46,7 @@ public class TreeView extends View
 	 */
 	public void paintComponent(Graphics aGraphics)
 	{
-		this.update();
+		aGraphics.clearRect(0, 0, this.getWidth(), this.getHeight());
 		this.model.forest().draw(aGraphics);
 		return;
 	}

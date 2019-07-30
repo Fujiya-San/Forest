@@ -67,6 +67,9 @@ p.belt-blue {
 	background-color : #ddeeff;
 	padding : 4px 8px;
 }
+p.text {
+	text-indent: 1em;
+}
 pre.belt {
 	background-color : #ddeeff;
 	padding : 4px 8px;
@@ -249,6 +252,72 @@ th {
 <hr>
 <h2>ソフトウェア工学II「樹状整列」テスト結果報告書</h2>
 <div class="belt">
+	<h3>テスト結果</h3>
+</div>
+<p>下に修正箇所を示す。修正箇所以外は正しく動作した。</p>
+<br/>
+	修正箇所
+	<ul>
+	    <li>Forest.java （propagateメソッド）
+		    <p class="text">下の画像は、修正後のpropagateメソッドのコードである。199行目がSystem.out.println(e);となっていたので、e.printStackTrace();に修正した。</p>
+		    <table summary="table">
+				<tr>
+					<td>
+						<table class="content" summary="table">
+							<tbody>
+								<tr>
+									<td class="center-small"><a href="images/propagate.png"><img class="borderless" src="images/propagate.png" width="450" height="200" alt="propagate"></a></td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+			</table>
+			<br/>
+		</li>
+	</ul>
+	<ul>
+	    <li>TreeModel.java （readメソッド）
+	    	<p>テキストデータを読み込んだ際、ブランチの情報やノードの一つ目の情報に文字が混在されている時、一つのノードやブランチにつき情報が1つ以下の時にエラーが発生したので、そのような場合はそのデータを飛ばしてデータを読み込むように修正した。下の画像が修正後のreadメソッドのコードである。160行目から176行目がノードを読み込むプログラム、181行目から193行目がブランチを読み込むプログラムとなっている。
+	    	</p>
+	    	<table summary="table">
+				<tr>
+					<td>
+						<table class="content" summary="table">
+							<tbody>
+								<tr>
+									<td class="center-small"><a href="images/read.png"><img class="borderless" src="images/read.png" width="1200" height="600" alt="read"></a></td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+			</table>
+			<br/>
+	    </li>
+	</ul>
+	<ul>
+	    <li>TreeView.java （paintComponentメソッド）
+	    	<p>Windowsでは、モデルが変更されて再描画する際に、クリアされずに描画されていたため、updateをclearRectに変更して修正しました。
+	    	</p>
+	    	<table summary="table">
+				<tr>
+					<td>
+						<table class="content" summary="table">
+							<tbody>
+								<tr>
+									<td class="center-small"><a href="images/paintComponent.png"><img class="borderless" src="images/paintComponent.png" width="480" height="100" alt="paintComponent"></a></td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+			</table>
+			<br/>
+	    </li>
+	</ul>
+
+<div class="belt">
 	<h3>Windows</h3>
 </div>
 <h4>【OS: Windows10 Home Edition】</h4>
@@ -290,6 +359,7 @@ th {
 					<li>プロセッサ: Intel(R) Core(TM) i5 1.60GHz</li>
 					<li>メモリ: DDR3 8GB 1600Hz</li>
 					<li>グラフィック: Intel HD Graphics 6000 1536 MB</li>
+
 					<li>Mac OS Mojava version 10.14.6</li>
 				</ul>
 			</td>
