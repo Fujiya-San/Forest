@@ -53,6 +53,8 @@ public class TreeModel extends Model {
 	*/
 	public void addDependent(TreeView aView)
 	{
+		aView.setFont(Constants.DefaultFont);
+		aView.setBackground(Constants.BackgroundColor);
 		dependents.add(aView);
 		return;
 	}
