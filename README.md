@@ -1,9 +1,9 @@
 # Forest
-# Last Edit 06/06/2019
+# Last Edit 07/31/2019 Completed
 
 # Collaboration
-# (°▽°) Ryo Tanonaka  <-%%%%->  _:(´ཀ`」 ∠): ƪ(˘⌣˘)ʃ 
 ``` bash
+# Ryo Tanonaka  
 # Satoshi Tahara
 # Fumiya Odahara
 # Kazuki Fujiyama
@@ -187,7 +187,7 @@ alias start='vi ~/.bash_profile'
 先ほどの状態ではaliasを打ち込んだターミナル以外のターミナルや終了してしまうので半永久化する手順を書いておく。
 
 # 1. 「~/.bash_profile」をviエディタで開く
-vi ~/.bash_profile 
+vi ~/.bash_profile
 
 # 2. 「i」を押して「INSERTモード(編集モード)」にする。
 普通のエディタとは異なりクリックなどでは移動できないので矢印キーにて移動する。
@@ -253,4 +253,3 @@ java用ビルドツール「ApachAnt」の設定
 http://bluetree.kyoto-su.ac.jp/repositories/AP/Java/ApacheAnt/index.html
 ※ 学内からのアクセスのみ
 ```
-
