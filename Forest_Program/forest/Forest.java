@@ -77,7 +77,7 @@ public class Forest extends Object {
 		this.initSet();
 		Consumer<Node> aConsumer = (Node aNode) -> { 
 			if(Objects.equals(aNode, this.rootNodesList.get(0))) this.arrange(aNode, new Point(this.bounds.x+Constants.Margin.x, this.bounds.y+this.bounds.height+aNode.getBounds().height-Constants.Margin.y-Constants.Margin.y), null);
-			else System.out.println(this.arrange(aNode, new Point(this.bounds.x+Constants.Margin.x, this.bounds.y+this.bounds.height+aNode.getBounds().height-Constants.Margin.y-Constants.Margin.y+Constants.Interval.y), null)); 
+			else this.arrange(aNode, new Point(this.bounds.x+Constants.Margin.x, this.bounds.y+this.bounds.height+aNode.getBounds().height-Constants.Margin.y-Constants.Margin.y+Constants.Interval.y), null); 
 		};
 		this.rootNodesList.forEach( aConsumer );
 		return;
@@ -93,7 +93,7 @@ public class Forest extends Object {
 		this.rootNodes();
 		Consumer<Node> aConsumer = (Node aNode) -> { 
 			if(Objects.equals(aNode, this.rootNodesList.get(0))) this.arrange(aNode, new Point(this.bounds.x+Constants.Margin.x, this.bounds.y+this.bounds.height+aNode.getBounds().height-Constants.Margin.y-Constants.Margin.y), aModel);
-			else System.out.println(this.arrange(aNode, new Point(this.bounds.x+Constants.Margin.x, this.bounds.y+this.bounds.height+aNode.getBounds().height-Constants.Margin.y-Constants.Margin.y+Constants.Interval.y), aModel)); 
+			else this.arrange(aNode, new Point(this.bounds.x+Constants.Margin.x, this.bounds.y+this.bounds.height+aNode.getBounds().height-Constants.Margin.y-Constants.Margin.y+Constants.Interval.y), aModel); 
 		};
 		rootNodesList.forEach( aConsumer );
 		return;
